@@ -1,7 +1,7 @@
 pcall(function()
   game.StarterGui:SetCore("SendNotification", {
-    Title = 'SM Update 99% Done';
-    Text = 'Finishing up testing and experimenting';
+    Title = 'Beta Released';
+    Text = 'if you would like to test the beta join | discord.gg/hVuCSxVpVb';
     Duration = 15;
   })
   if not game.Players.LocalPlayer:IsInGroup(12052955) then

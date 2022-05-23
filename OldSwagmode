@@ -1,7 +1,7 @@
 pcall(function()
   game.StarterGui:SetCore("SendNotification", {
-    Title = 'Legacy Swag mode';
-    Text = 'outdated version, i highly recommend using the newer UI';
+    Title = 'OutDated UI';
+    Text = 'recommed the new UI | discord.gg/hVuCSxVpVb';
     Duration = 15;
   })
   if not game.Players.LocalPlayer:IsInGroup(12052955) then

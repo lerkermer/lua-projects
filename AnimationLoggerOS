@@ -83,10 +83,15 @@ UICorner.Parent = CloseGui
 
 UIListLayout.Parent = ScrollingFrame
 
+local Target = game.Players.LocalPlayer.Name
+if getgenv().Target then
+    Target = getgenv().Target
+end
+
 local Logged = {}
 while AnimationStealer do
     pcall(function()
-        for _,v in pairs(game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):GetPlayingAnimationTracks()) do
+        for _,v in pairs(game.Players[Target].Character:FindFirstChildOfClass('Humanoid'):GetPlayingAnimationTracks()) do
             if not table.find(Logged, v.Animation.AnimationId) and not string.find(v.Animation.AnimationId, 'roblox.com/asset') then
                 table.insert(Logged, v.Animation.AnimationId)
                 

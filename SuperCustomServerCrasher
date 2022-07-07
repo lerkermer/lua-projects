@@ -1,7 +1,7 @@
 pcall(function()
   game.StarterGui:SetCore("SendNotification", {
     Title = 'New crash method';
-    Text = 'reliable, free, and fast crasher';
+    Text = 'the fast crasher is buggy i recommend the Crew Crasher';
     Duration = 20;
   })
   if not game.Players.LocalPlayer:IsInGroup(12052955) then

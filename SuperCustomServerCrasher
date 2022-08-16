@@ -1,9 +1,4 @@
 pcall(function()
-  game.StarterGui:SetCore("SendNotification", {
-    Title = 'NWallet Crash is patched ATM';
-    Text = 'dont use it, ill remove it tmro';
-    Duration = 20;
-  })
   if not game.Players.LocalPlayer:IsInGroup(12052955) then
     coroutine.resume(coroutine.create(function()
        wait(10)

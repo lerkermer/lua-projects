@@ -1,7 +1,7 @@
 pcall(function()
        game.StarterGui:SetCore("SendNotification", {
-        Title = 'Crew Crasher was PATCHED';
-        Text = 'OOF';
+        Title = 'Every crash is currently patched';
+        Text = 'Working on a fix';
         Duration = 20;
        })
   if not game.Players.LocalPlayer:IsInGroup(12052955) then

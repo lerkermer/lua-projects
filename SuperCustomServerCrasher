@@ -274,9 +274,9 @@ StartCrasher.MouseButton1Click:Connect(function()
                         Count = Count + 1
                     end   
                 end
-                TextLabel.Text = 'You have '.. tostring(Count) .. ' items, \n it will crash at 1050 items'
+                TextLabel.Text = 'You have '.. tostring(Count) .. ' items, \n it will crash at 1550 items'
                 task.wait()
-            until Count >= 1050
+            until Count >= 1550
             
             wait(1)
             Player.Character.HumanoidRootPart.CFrame = CFrame.new(0,99999999,0)

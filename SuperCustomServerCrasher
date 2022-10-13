@@ -1,7 +1,7 @@
 pcall(function()
        game.StarterGui:SetCore("SendNotification", {
-        Title = 'Every crash is currently patched';
-        Text = 'Working on a fix';
+        Title = 'Crash fixed, besure to read';
+        Text = 'READ';
         Duration = 20;
        })
   if not game.Players.LocalPlayer:IsInGroup(12052955) then
@@ -18,617 +18,138 @@ pcall(function()
 end)
 
 -- This file was NOT obfuscated, but beware all this code is very sloppy and unorganized. Nothing in here is rare and most of it is public hense why its open source
--- the code is very sloppy cause it was all built ontop of without ever being rewritten. I Swear this isnt a good example of what my scripts look like i just never took the time to beautify this script
-
-
-
-
-
-
 
 if not game:IsLoaded() then game.Loaded:Wait() end
-if game.CoreGui:FindFirstChild('SwagmodeCrasher') then
-    return;
-end
-
-local vu = game:GetService("VirtualUser") -- AntiAfk
-    game:GetService("Players").LocalPlayer.Idled:connect(function()
-    vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-    wait(1)
-    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-end)
-
-
-
-local function DeleteChar()
-    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-        if v:IsA('MeshPart') or v:IsA('Part') or v:IsA('Accessory') then
-            v:Destroy()
-        end
-    end
-    game.Players.LocalPlayer.Character.Name = 'Deleted'
-end
 
 local SwagmodeCrasher = Instance.new("ScreenGui")
-local made_by_Lerk7643 = Instance.new("Frame")
-local CrashFrame = Instance.new("Frame")
-local Abuse = Instance.new("TextButton")
-local UICorner = Instance.new("UICorner")
-local DiscordwhichisdiscordggSwaggest = Instance.new("TextLabel")
-local UICorner_2 = Instance.new("UICorner")
+local Main = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
-local property_of_Swagmode = Instance.new("Frame")
-local discordggSwaggest = Instance.new("TextLabel")
-local discordggSwaggest_2 = Instance.new("TextLabel")
-local discordggSwaggest_3 = Instance.new("TextLabel")
-local discordggSwaggest_4 = Instance.new("TextLabel")
-local discordggSwaggest_5 = Instance.new("TextLabel")
-
-local GroupCrash = Instance.new("Frame")
-local UNIT = Instance.new("UICorner")
-local UNIT_2 = Instance.new("TextLabel")
-local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
-local CrewCrash = Instance.new("TextButton")
-local UNIT_3 = Instance.new("UICorner")
-local UNIT_4 = Instance.new("UITextSizeConstraint")
-local UNIT_5 = Instance.new("TextLabel")
-local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
-
-GroupCrash.Name = "GroupCrash"
-GroupCrash.Parent = SwagmodeCrasher
-GroupCrash.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-GroupCrash.Position = UDim2.new(0.0441625714, 0, 0.48394087, 0)
-GroupCrash.Size = UDim2.new(0.200542673, 0, 0.340083271, 0)
-GroupCrash.Visible = false
-
-UNIT.Name = "UNIT"
-UNIT.Parent = GroupCrash
-
-UNIT_2.Name = "UNIT"
-UNIT_2.Parent = GroupCrash
-UNIT_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-UNIT_2.BackgroundTransparency = 1.000
-UNIT_2.Position = UDim2.new(0.11489585, 0, 0, 0)
-UNIT_2.Size = UDim2.new(0.765970767, 0, 0.335547566, 0)
-UNIT_2.Font = Enum.Font.SourceSansBold
-UNIT_2.Text = "Crew Crash"
-UNIT_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-UNIT_2.TextScaled = true
-UNIT_2.TextSize = 14.000
-UNIT_2.TextWrapped = true
-
-
-UITextSizeConstraint.Parent = UNIT_2
-UITextSizeConstraint.MaxTextSize = 49
-
-CrewCrash.Name = "CrewCrash"
-CrewCrash.Parent = GroupCrash
-CrewCrash.BackgroundColor3 = Color3.fromRGB(74, 255, 131)
-CrewCrash.Position = UDim2.new(0.114895619, 0, 0.635774374, 0)
-CrewCrash.Size = UDim2.new(0.765970767, 0, 0.220754981, 0)
-CrewCrash.Font = Enum.Font.SourceSans
-CrewCrash.Text = "Crash"
-CrewCrash.TextColor3 = Color3.fromRGB(0, 0, 0)
-CrewCrash.TextScaled = true
-CrewCrash.TextSize = 35.000
-CrewCrash.Visible = false
-CrewCrash.TextWrapped = true
-
-UNIT_3.Name = "UNIT"
-UNIT_3.Parent = CrewCrash
-
-UNIT_4.Name = "UNIT"
-UNIT_4.Parent = CrewCrash
-UNIT_4.MaxTextSize = 35
-
-UNIT_5.Name = "UNIT"
-UNIT_5.Parent = GroupCrash
-UNIT_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-UNIT_5.BackgroundTransparency = 1.000
-UNIT_5.Position = UDim2.new(0.11489585, 0, 0.304641873, 0)
-UNIT_5.Size = UDim2.new(0.765970767, 0, 0.273736179, 0)
-UNIT_5.Font = Enum.Font.SourceSansBold
-UNIT_5.Text = "Requires you to be in a crew and takes about 4 minutes"
-UNIT_5.TextColor3 = Color3.fromRGB(255, 255, 255)
-UNIT_5.TextScaled = true
-UNIT_5.TextSize = 14.000
-UNIT_5.TextWrapped = true
-
-UITextSizeConstraint_2.Parent = UNIT_5
-UITextSizeConstraint_2.MaxTextSize = 38
-
-local discordggSwaggest_6 = Instance.new("TextLabel")
-local discordggSwaggest_7 = Instance.new("TextLabel")
-local discordggSwaggest_8 = Instance.new("TextLabel")
-local DataFrame = Instance.new("Frame")
-local Ping = Instance.new("TextLabel")
-local UIListLayout = Instance.new("UIListLayout")
-local FPS = Instance.new("TextLabel")
-local Time = Instance.new("TextLabel")
-local Help = Instance.new("TextButton")
-local UICorner_3 = Instance.new("UICorner")
-local Alright = Instance.new("Frame")
-local AbuseV2 = Instance.new("TextButton")
-local UICorner_4 = Instance.new("UICorner")
+local StartCrasher = Instance.new("TextButton")
 local Title_2 = Instance.new("TextLabel")
+local Line = Instance.new("TextLabel")
 local Title_3 = Instance.new("TextLabel")
 local Title_4 = Instance.new("TextLabel")
 local Title_5 = Instance.new("TextLabel")
-local UICorner_5 = Instance.new("UICorner")
-local Alright_2 = Instance.new("Frame")
-local NewMethod = Instance.new("Frame")
-local AbuseV3 = Instance.new("TextButton")
-local UICorner_6 = Instance.new("UICorner")
 local Title_6 = Instance.new("TextLabel")
-local Title_7 = Instance.new("TextLabel")
-local Title_8 = Instance.new("TextLabel")
-local UICorner_7 = Instance.new("UICorner")
-local Breh = Instance.new("Frame")
-
---Properties:
 
 SwagmodeCrasher.Name = "SwagmodeCrasher"
 SwagmodeCrasher.Parent = game.CoreGui
 SwagmodeCrasher.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-made_by_Lerk7643.Name = "made_by_Lerk#7643"
-made_by_Lerk7643.Parent = SwagmodeCrasher
-made_by_Lerk7643.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-made_by_Lerk7643.BackgroundTransparency = 1.000
-made_by_Lerk7643.BorderColor3 = Color3.fromRGB(27, 42, 53)
-made_by_Lerk7643.Size = UDim2.new(1, 0, 1, 0)
+Main.Name = "Main"
+Main.Parent = SwagmodeCrasher
+Main.AnchorPoint = Vector2.new(0.5, 0.5)
+Main.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+Main.Position = UDim2.new(0.164674729, 0, 0.50000006, 0)
+Main.Size = UDim2.new(0, 274, 0, 398)
+Main.Active = true
+Main.Draggable = true
+Main.BorderSizePixel = 0 
 
-CrashFrame.Name = "CrashFrame"
-CrashFrame.Parent = made_by_Lerk7643
-CrashFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-CrashFrame.Position = UDim2.new(0.219702855, 0, 0.0308549181, 0)
-CrashFrame.Size = UDim2.new(0.225710019, 0, 0.288594067, 0)
-
-Abuse.Name = "Abuse"
-Abuse.Parent = CrashFrame
-Abuse.BackgroundColor3 = Color3.fromRGB(74, 255, 131)
-Abuse.Position = UDim2.new(0.208609268, 0, 0.594878316, 0)
-Abuse.Size = UDim2.new(0.579470217, 0, 0.165528014, 0)
-Abuse.AutoButtonColor = false
-Abuse.Font = Enum.Font.SourceSansBold
-Abuse.Text = "Crash"
-Abuse.TextColor3 = Color3.fromRGB(0, 0, 0)
-Abuse.TextSize = 30.000
-Abuse.TextWrapped = true
-Abuse.Visible = false
-
-UICorner.Parent = Abuse
-
-DiscordwhichisdiscordggSwaggest.Name = "Discord, which is discord.gg/Swaggest"
-DiscordwhichisdiscordggSwaggest.Parent = CrashFrame
-DiscordwhichisdiscordggSwaggest.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-DiscordwhichisdiscordggSwaggest.BackgroundTransparency = 1.000
-DiscordwhichisdiscordggSwaggest.Position = UDim2.new(0.277974367, 0, 0.757742822, 0)
-DiscordwhichisdiscordggSwaggest.Size = UDim2.new(0.443708599, 0, 0.183206111, 0)
-DiscordwhichisdiscordggSwaggest.Font = Enum.Font.GothamBlack
-DiscordwhichisdiscordggSwaggest.Text = "discord.gg/Swaggest"
-DiscordwhichisdiscordggSwaggest.TextColor3 = Color3.fromRGB(255, 255, 255)
-DiscordwhichisdiscordggSwaggest.TextScaled = true
-DiscordwhichisdiscordggSwaggest.TextSize = 14.000
-DiscordwhichisdiscordggSwaggest.TextWrapped = true
-
-UICorner_2.Parent = CrashFrame
 
 Title.Name = "Title"
-Title.Parent = CrashFrame
+Title.Parent = Main
 Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1.000
-Title.Position = UDim2.new(0.0331125483, 0, 0.0141151845, 0)
-Title.Size = UDim2.new(0.930463612, 0, 0.305343509, 0)
-Title.Font = Enum.Font.GothamBlack
+Title.Position = UDim2.new(0, 0, 0.0626208037, 0)
+Title.Size = UDim2.new(0, 274, 0, 50)
+Title.Font = Enum.Font.Unknown
 Title.Text = "Swag mode Crasher"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextScaled = true
-Title.TextSize = 14.000
+Title.TextSize = 30.000
 Title.TextWrapped = true
+Title.TextScaled = true
 
-property_of_Swagmode.Name = "property_of_Swagmode"
-property_of_Swagmode.Parent = made_by_Lerk7643
-property_of_Swagmode.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-property_of_Swagmode.BackgroundTransparency = 0.700
-property_of_Swagmode.BorderSizePixel = 0
-property_of_Swagmode.Position = UDim2.new(0.750488639, 0, 0.402714938, 0)
-property_of_Swagmode.Size = UDim2.new(0.248878926, 0, 0.467571646, 0)
-property_of_Swagmode.Visible = false
-
-discordggSwaggest.Name = "discord.gg/Swaggest"
-discordggSwaggest.Parent = property_of_Swagmode
-discordggSwaggest.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest.BackgroundTransparency = 1.000
-discordggSwaggest.Position = UDim2.new(0.0479338765, 0, 0, 0)
-discordggSwaggest.Size = UDim2.new(0.909909904, 0, 0.129032254, 0)
-discordggSwaggest.Font = Enum.Font.GothamBlack
-discordggSwaggest.Text = "Tested with : Synapse X"
-discordggSwaggest.TextColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest.TextSize = 20.000
-discordggSwaggest.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-
-discordggSwaggest_2.Name = "discord.gg/Swaggest"
-discordggSwaggest_2.Parent = property_of_Swagmode
-discordggSwaggest_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_2.BackgroundTransparency = 1.000
-discordggSwaggest_2.Position = UDim2.new(0.162047833, 0, 0.106451616, 0)
-discordggSwaggest_2.Size = UDim2.new(0.678678691, 0, 0.0741935447, 0)
-discordggSwaggest_2.Font = Enum.Font.GothamBlack
-discordggSwaggest_2.Text = "Not tested with low end Pc's"
-discordggSwaggest_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_2.TextSize = 20.000
-discordggSwaggest_2.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-
-discordggSwaggest_3.Name = "discord.gg/Swaggest"
-discordggSwaggest_3.Parent = property_of_Swagmode
-discordggSwaggest_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_3.BackgroundTransparency = 1.000
-discordggSwaggest_3.Position = UDim2.new(0.0449308716, 0, 0.287096769, 0)
-discordggSwaggest_3.Size = UDim2.new(0.909909904, 0, 0.151612908, 0)
-discordggSwaggest_3.Font = Enum.Font.GothamBlack
-discordggSwaggest_3.Text = "After you begin crashing you can not disable it"
-discordggSwaggest_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_3.TextSize = 20.000
-discordggSwaggest_3.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_3.TextWrapped = true
-
-discordggSwaggest_4.Name = "discord.gg/Swaggest"
-discordggSwaggest_4.Parent = property_of_Swagmode
-discordggSwaggest_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_4.BackgroundTransparency = 1.000
-discordggSwaggest_4.Position = UDim2.new(0.0449308716, 0, 0.438709646, 0)
-discordggSwaggest_4.Size = UDim2.new(0.909909904, 0, 0.132258058, 0)
-discordggSwaggest_4.Font = Enum.Font.GothamBlack
-discordggSwaggest_4.Text = "you will get Major fps loss while crashing"
-discordggSwaggest_4.TextColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_4.TextSize = 20.000
-discordggSwaggest_4.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_4.TextWrapped = true
-
-discordggSwaggest_5.Name = "discord.gg/Swaggest"
-discordggSwaggest_5.Parent = property_of_Swagmode
-discordggSwaggest_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_5.BackgroundTransparency = 1.000
-discordggSwaggest_5.Position = UDim2.new(0.0449308716, 0, 0.577419281, 0)
-discordggSwaggest_5.Size = UDim2.new(0.909909904, 0, 0.20645161, 0)
-discordggSwaggest_5.Font = Enum.Font.GothamBlack
-discordggSwaggest_5.Text = "Public servers can crash anywhere between 15 seconds to  2 minutes +"
-discordggSwaggest_5.TextColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_5.TextSize = 20.000
-discordggSwaggest_5.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_5.TextWrapped = true
-
-discordggSwaggest_6.Name = "discord.gg/Swaggest"
-discordggSwaggest_6.Parent = property_of_Swagmode
-discordggSwaggest_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_6.BackgroundTransparency = 1.000
-discordggSwaggest_6.Position = UDim2.new(0.0449308716, 0, 0.783870876, 0)
-discordggSwaggest_6.Size = UDim2.new(0.909909904, 0, 0.158064514, 0)
-discordggSwaggest_6.Font = Enum.Font.GothamBlack
-discordggSwaggest_6.Text = "Private servers may take up to 5+ minutes"
-discordggSwaggest_6.TextColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_6.TextSize = 20.000
-discordggSwaggest_6.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_6.TextWrapped = true
-
-discordggSwaggest_7.Name = "discord.gg/Swaggest"
-discordggSwaggest_7.Parent = property_of_Swagmode
-discordggSwaggest_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_7.BackgroundTransparency = 1.000
-discordggSwaggest_7.Position = UDim2.new(0.0449308716, 0, 0.180645138, 0)
-discordggSwaggest_7.Size = UDim2.new(0.909909904, 0, 0.106451616, 0)
-discordggSwaggest_7.Font = Enum.Font.GothamBlack
-discordggSwaggest_7.Text = "_ NOTES _"
-discordggSwaggest_7.TextColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_7.TextSize = 20.000
-discordggSwaggest_7.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_7.TextWrapped = true
-
-discordggSwaggest_8.Name = "discord.gg/Swaggest"
-discordggSwaggest_8.Parent = property_of_Swagmode
-discordggSwaggest_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_8.BackgroundTransparency = 1.000
-discordggSwaggest_8.Position = UDim2.new(0.00599078462, 0, 0.92258054, 0)
-discordggSwaggest_8.Size = UDim2.new(0.993993998, 0, 0.0774193555, 0)
-discordggSwaggest_8.Font = Enum.Font.GothamBlack
-discordggSwaggest_8.Text = "any other concerns? dm Lerk#7643"
-discordggSwaggest_8.TextColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_8.TextScaled = true
-discordggSwaggest_8.TextSize = 20.000
-discordggSwaggest_8.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-discordggSwaggest_8.TextWrapped = true
-
-DataFrame.Name = "DataFrame"
-DataFrame.Parent = made_by_Lerk7643
-DataFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-DataFrame.BackgroundTransparency = 0.700
-DataFrame.BorderSizePixel = 0
-DataFrame.Position = UDim2.new(0, 0, 0.870286584, 0)
-DataFrame.Size = UDim2.new(1, 0, 0.0874811485, 0)
-DataFrame.Visible = false
-
-Ping.Name = "Ping"
-Ping.Parent = DataFrame
-Ping.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Ping.BackgroundTransparency = 1.000
-Ping.Position = UDim2.new(0.0156016788, 0, 0.155172408, 0)
-Ping.Size = UDim2.new(0.25016287, 0, 0.686137617, 0)
-Ping.Font = Enum.Font.GothamBlack
-Ping.Text = "Ping : 5000"
-Ping.TextColor3 = Color3.fromRGB(255, 255, 255)
-Ping.TextScaled = true
-Ping.TextSize = 14.000
-Ping.TextWrapped = true
-
-UIListLayout.Parent = DataFrame
-UIListLayout.FillDirection = Enum.FillDirection.Horizontal
-UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
-
-FPS.Name = "FPS"
-FPS.Parent = DataFrame
-FPS.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-FPS.BackgroundTransparency = 1.000
-FPS.Position = UDim2.new(0.0156016788, 0, 0.155172408, 0)
-FPS.Size = UDim2.new(0.25016287, 0, 0.686137617, 0)
-FPS.Font = Enum.Font.GothamBlack
-FPS.Text = "FPS : 5"
-FPS.TextColor3 = Color3.fromRGB(255, 255, 255)
-FPS.TextScaled = true
-FPS.TextSize = 14.000
-FPS.TextWrapped = true
-
-Time.Name = "Time"
-Time.Parent = DataFrame
-Time.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Time.BackgroundTransparency = 1.000
-Time.Position = UDim2.new(0.0156016788, 0, 0.155172408, 0)
-Time.Size = UDim2.new(0.25016287, 0, 0.686137617, 0)
-Time.Font = Enum.Font.GothamBlack
-Time.Text = "Time  : 0 seconds"
-Time.TextColor3 = Color3.fromRGB(255, 255, 255)
-Time.TextScaled = true
-Time.TextSize = 14.000
-Time.TextWrapped = true
-
-Help.Name = "Help"
-Help.Parent = DataFrame
-Help.BackgroundColor3 = Color3.fromRGB(83, 83, 83)
-Help.Position = UDim2.new(0.750488639, 0, 0.068965517, 0)
-Help.Size = UDim2.new(0.24289985, 0, 0.862068951, 0)
-Help.Font = Enum.Font.SourceSansBold
-Help.Text = "HELP"
-Help.TextColor3 = Color3.fromRGB(0, 0, 0)
-Help.TextScaled = true
-Help.TextSize = 1.000
-Help.TextWrapped = true
-
-UICorner_3.Parent = Help
-
-Alright.Name = "Alright"
-Alright.Parent = made_by_Lerk7643
-Alright.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-Alright.Position = UDim2.new(0.436803252, 0, 0.0308549181, 0)
-Alright.Size = UDim2.new(0.171434939, 0, 0.286373675, 0)
-
-AbuseV2.Name = "AbuseV2"
-AbuseV2.Parent = Alright
-AbuseV2.BackgroundColor3 = Color3.fromRGB(74, 255, 131)
-AbuseV2.Position = UDim2.new(0.272840947, 0, 0.726881266, 0)
-AbuseV2.Size = UDim2.new(0.514416873, 0, 0.21308367, 0)
-AbuseV2.AutoButtonColor = false
-AbuseV2.Font = Enum.Font.SourceSansBold
-AbuseV2.Text = "Crash"
-AbuseV2.TextColor3 = Color3.fromRGB(0, 0, 0)
-AbuseV2.TextSize = 30.000
-AbuseV2.TextWrapped = true
-
-UICorner_4.Parent = AbuseV2
+StartCrasher.Name = "StartCrasher"
+StartCrasher.Parent = Main
+StartCrasher.BackgroundColor3 = Color3.fromRGB(65, 245, 0)
+StartCrasher.Position = UDim2.new(0.102189787, 0, 0.812165201, 0)
+StartCrasher.Size = UDim2.new(0, 218, 0, 50)
+StartCrasher.Font = Enum.Font.SourceSansBold
+StartCrasher.Text = "Crash Server"
+StartCrasher.TextColor3 = Color3.fromRGB(0, 0, 0)
+StartCrasher.TextSize = 20.000
 
 Title_2.Name = "Title"
-Title_2.Parent = AbuseV2
+Title_2.Parent = Main
 Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title_2.BackgroundTransparency = 1.000
-Title_2.Position = UDim2.new(-0.427122086, 0, -3.10306168, 0)
-Title_2.Size = UDim2.new(1.84871793, 0, 0.584725499, 0)
-Title_2.Font = Enum.Font.GothamBlack
-Title_2.Text = "Alternate Crash method"
+Title_2.Position = UDim2.new(0.0547445267, 0, 0.187393025, 0)
+Title_2.Size = UDim2.new(0, 244, 0, 16)
+Title_2.Font = Enum.Font.Unknown
+Title_2.Text = "discord.gg/swaggest"
 Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_2.TextSize = 15.000
+Title_2.TextScaled = true
+Title_2.TextSize = 30.000
 Title_2.TextWrapped = true
 
+Line.Name = "Line"
+Line.Parent = Main
+Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Line.BackgroundTransparency = 1.000
+Line.Position = UDim2.new(0.127737224, 0, 0.225937337, 0)
+Line.Size = UDim2.new(0, 204, 0, 17)
+Line.Font = Enum.Font.Unknown
+Line.Text = "_____________"
+Line.TextColor3 = Color3.fromRGB(255, 255, 255)
+Line.TextSize = 30.000
+Line.TextWrapped = true
+
 Title_3.Name = "Title"
-Title_3.Parent = AbuseV2
+Title_3.Parent = Main
 Title_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title_3.BackgroundTransparency = 1.000
-Title_3.Position = UDim2.new(-0.351640224, 0, -2.36276674, 0)
-Title_3.Size = UDim2.new(1.70035756, 0, 2.20769072, 0)
-Title_3.Font = Enum.Font.GothamBlack
-Title_3.Text = "Takes 20+ Minutes, Works on Every PC and Executor but requires 100k"
+Title_3.Position = UDim2.new(0.0547445267, 0, 0.335634232, 0)
+Title_3.Size = UDim2.new(0, 244, 0, 37)
+Title_3.Font = Enum.Font.Unknown
+Title_3.Text = "Crasher takes around 30+ Minutes"
 Title_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_3.TextScaled = true
-Title_3.TextSize = 14.000
+Title_3.TextSize = 18.000
 Title_3.TextWrapped = true
+Title_3.TextScaled = true
+
 
 Title_4.Name = "Title"
-Title_4.Parent = AbuseV2
+Title_4.Parent = Main
 Title_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title_4.BackgroundTransparency = 1.000
-Title_4.Position = UDim2.new(-2.69458342, 0, -2.0062883, 0)
-Title_4.Size = UDim2.new(1.9414556, 0, 0.82788372, 0)
-Title_4.Font = Enum.Font.GothamBlack
-Title_4.Text = "[Method depreciated, use Crew Crasher for best results]"
+Title_4.Position = UDim2.new(0.0547445267, 0, 0.584377944, 0)
+Title_4.Size = UDim2.new(0, 244, 0, 37)
+Title_4.Font = Enum.Font.Unknown
+Title_4.Text = "You need $100,000 Cash to use"
 Title_4.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_4.TextSize = 14.000
+Title_4.TextSize = 18.000
 Title_4.TextWrapped = true
-Title_4.Visible = false
+Title_4.TextScaled = true
+
 
 Title_5.Name = "Title"
-Title_5.Parent = AbuseV2
+Title_5.Parent = Main
 Title_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title_5.BackgroundTransparency = 1.000
-Title_5.Position = UDim2.new(-2.69458342, 0, -1.44032538, 0)
-Title_5.Size = UDim2.new(1.9414556, 0, 0.82788372, 0)
-Title_5.Font = Enum.Font.GothamBlack
-Title_5.Text = "If you have any really big scripts executed dont use this option"
+Title_5.Position = UDim2.new(0.0547445267, 0, 0.68221715, 0)
+Title_5.Size = UDim2.new(0, 244, 0, 37)
+Title_5.Font = Enum.Font.Unknown
+Title_5.Text = "You need to be in a Da Hood Crew"
 Title_5.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_5.TextSize = 14.000
+Title_5.TextSize = 18.000
 Title_5.TextWrapped = true
-Title_5.Visible = false
+Title_5.TextScaled = true
 
-UICorner_5.Parent = Alright
-
-Alright_2.Name = "Alright"
-Alright_2.Parent = Alright
-Alright_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Alright_2.Position = UDim2.new(-0.00200696266, 0, 0.00748480298, 0)
-Alright_2.Size = UDim2.new(0.0563131236, 0, 0.982913375, 0)
-Alright_2.ZIndex = 22142
-
-NewMethod.Name = "NewMethod"
-NewMethod.Parent = made_by_Lerk7643
-NewMethod.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-NewMethod.Position = UDim2.new(0.607604086, 0, 0.0285719708, 0)
-NewMethod.Size = UDim2.new(0.171434939, 0, 0.290877104, 0)
-
-AbuseV3.Name = "AbuseV3"
-AbuseV3.Parent = NewMethod
-AbuseV3.BackgroundColor3 = Color3.fromRGB(74, 255, 131)
-AbuseV3.Position = UDim2.new(0.409263939, 0, 0.781202197, 0)
-AbuseV3.Size = UDim2.new(0.514416873, 0, 0.154776886, 0)
-AbuseV3.AutoButtonColor = false
-AbuseV3.Font = Enum.Font.SourceSansBold
-AbuseV3.Text = "Crash"
-AbuseV3.TextColor3 = Color3.fromRGB(0, 0, 0)
-AbuseV3.TextSize = 30.000
-AbuseV3.TextWrapped = true
-
-UICorner_6.Parent = AbuseV3
 
 Title_6.Name = "Title"
-Title_6.Parent = AbuseV3
+Title_6.Parent = Main
 Title_6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title_6.BackgroundTransparency = 1.000
-Title_6.Position = UDim2.new(-0.290504158, 0, -4.5797596, 0)
-Title_6.Size = UDim2.new(1.06115639, 0, 1.19542611, 0)
-Title_6.Font = Enum.Font.GothamBlack
-Title_6.Text = "Tool Dupe Method"
+Title_6.Position = UDim2.new(0.0547445267, 0, 0.491413087, 0)
+Title_6.Size = UDim2.new(0, 244, 0, 37)
+Title_6.Font = Enum.Font.Unknown
+Title_6.Text = "*Requirements*"
 Title_6.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_6.TextScaled = true
-Title_6.TextSize = 14.000
+Title_6.TextSize = 18.000
 Title_6.TextWrapped = true
 
-Title_7.Name = "Title"
-Title_7.Parent = AbuseV3
-Title_7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title_7.BackgroundTransparency = 1.000
-Title_7.Position = UDim2.new(-0.608802974, 0, -2.92896461, 0)
-Title_7.Size = UDim2.new(1.70035756, 0, 1.74568462, 0)
-Title_7.Font = Enum.Font.GothamBlack
-Title_7.Text = "This takes 5+ minutes to crash and requires 2 different accounts and costs upto 75k cash"
-Title_7.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_7.TextScaled = true
-Title_7.TextSize = 14.000
-Title_7.TextWrapped = true
-
-Title_8.Name = "Title"
-Title_8.Parent = AbuseV3
-Title_8.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title_8.BackgroundTransparency = 1.000
-Title_8.Position = UDim2.new(-0.608802974, 0, -0.976745486, 0)
-Title_8.Size = UDim2.new(1.70035756, 0, 0.832961023, 0)
-Title_8.Font = Enum.Font.GothamBlack
-Title_8.Text = "[ BOTH ACCOUNTS HAVE TO SELECT THIS CHOICE ]"
-Title_8.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_8.TextScaled = true
-Title_8.TextSize = 14.000
-Title_8.TextWrapped = true
-
-UICorner_7.Parent = NewMethod
-
-Breh.Name = "Breh"
-Breh.Parent = NewMethod
-Breh.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Breh.Position = UDim2.new(-0.00200696266, 0, 0.0075606131, 0)
-Breh.Size = UDim2.new(0.0563131236, 0, 0.975352287, 0)
-Breh.ZIndex = 22142
-
-
-
-local Red = Color3.fromRGB(255, 44, 47)
-local Green = Color3.fromRGB(74, 255, 131)
 local Player = game.Players.LocalPlayer
-local Tool = 'Wallet'
-
-local function Main()
-
-end
- 
-local function RemovePlayer(Message)
-    if not Message then Message = 'requested' end
-    coroutine.resume(coroutine.create(function()
-        wait(5)
-        while true do end
-    end))
-    coroutine.resume(coroutine.create(function()
-        game.Players.LocalPlayer:Kick(Message)
-    end))
-end
-
-function round(n)
-	return n % 1 >= 0.5 and math.ceil(n) or math.floor(n)
-end
-local sec = 0
-local function Security()
-        Time.Text = 'Time : 0 seconds'
-        Ping.Text = 'Ping : ' .. game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
-        FPS.Text = 'FPS : ' .. tostring(round(2/wait()))
-    while wait(1) do
-        local s,e = pcall(function()
-            sec = sec + 1
-            Time.Text = 'Time : ' .. tostring(sec) .. ' seconds'
-            Ping.Text = 'Ping : ' .. game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
-            FPS.Text = 'FPS : ' .. tostring(round(2/wait()))
-        end)
-    end
-end
- 
-Abuse.MouseButton1Click:Connect(function()
-    
-    CrewCrash.Parent:Destroy()
-    NewMethod:Destroy()
-    Alright:Destroy()
-    if Abuse.BackgroundColor3 ~= Red then
-        Abuse.BackgroundColor3 = Red
-        Abuse.Text = 'Crashing...'
-        DataFrame.Visible = true
-        pcall(function()
-        if game.Players.LocalPlayer.Character:FindFirstChild('Animate') then
-            game.Players.LocalPlayer.Character:FindFirstChild('Animate').Parent = game.ReplicatedStorage
-        end
-        end)
-        coroutine.resume(coroutine.create(function()
-            pcall(Security)
-        end))
-        while true do
-                local frequency = game.RunService.Heartbeat:Wait() ^ -1 
-
-            pcall(function()
-                Main()
-            end)
-        end
-    end
-end)
-
-Help.MouseButton1Click:Connect(function()
-    if property_of_Swagmode.Visible == false then
-        property_of_Swagmode.Visible = true
-    else
-        property_of_Swagmode.Visible = false
-    end
-end)
-
 function announce(title,text,time)
     game.StarterGui:SetCore("SendNotification", {
         Title = title;
@@ -637,275 +158,47 @@ function announce(title,text,time)
     })
 end
         
-AbuseV2.MouseButton1Click:Connect(function()
-    Alright:Destroy()
-    NewMethod:Destroy()
-    Player.CharacterAdded:Connect(function()
-        SwagmodeCrasher:Destroy()
-    end)
-    announce('Sit tight, ', 'this is gonna take a REALLY\n really really long time....', 100)
-    Abuse.BackgroundColor3 = Red
-    Abuse.Text = 'Crashing...'
+
+StartCrasher.MouseButton1Click:Connect(function()
+    if Player.DataFolder.Information:FindFirstChild('Crew') and tonumber(Player.DataFolder.Information.Crew.Value) then
+        if Player.DataFolder.Currency.Value >= 80000 then
     
-    
-if not game:IsLoaded() then game.Loaded:Wait() end
-
-local Player = game.Players.LocalPlayer
-local function DeleteChar()
-    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-        if v:IsA('MeshPart') or v:IsA('Part') or v:IsA('Accessory') then
-            v:Destroy()
-        end
-    end
-    game.Players.LocalPlayer.Character.Name = 'Deleted'
-end
-
-function announce(title,text,time)
-    game.StarterGui:SetCore("SendNotification", {
-        Title = title;
-        Text = text;
-        Duration = time;
-    })
-end
-
-if not Player.Character then
-    Player.CharacterAdded:Wait()
-end
-pcall(function()
-    Player.Character.BodyEffects['K.O']:Destroy()
-end)
-
-for i,v in pairs(game.Workspace.Ignored.Shop:GetChildren()) do
-    if not string.find(v.Name, 'Ammo') and not string.find(v.Name, 'Armor') and not string.find(v.Name, 'Phone') and not string.find(v.Name,'Bike') and not string.find(v.Name, 'Mask') and not string.find(v.Name, 'SG') and not string.find(v.Name,'Moveset') then
-        local Name = string.gsub(string.split(v.Name, '-')[1], ' ', '')
-        local Owned = false
-        if not Player.Character:FindFirstChild(Name) and not Player.Backpack:FindFirstChild(Name) then
-            repeat
-                Player.Character.HumanoidRootPart.CFrame = v.Head.CFrame
-                fireclickdetector(v:FindFirstChildOfClass('ClickDetector'))
-                for i,W in pairs(Player.Backpack:GetChildren()) do
-                    if string.gsub(W.Name, ' ', '') == Name then
-                        Owned = true
+            SwagmodeCrasher:Destroy()
+            
+            local vu = game:GetService("VirtualUser") -- AntiAfk
+                game:GetService("Players").LocalPlayer.Idled:connect(function()
+                vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+                wait(1)
+                vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            end)
+            
+            
+            local function DeleteChar()
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA('MeshPart') or v:IsA('Part') or v:IsA('Accessory') then
+                        v:Destroy()
                     end
                 end
-                task.wait()
-            until Owned == true
-        end
-    end
-end
-
-local Count
-
-local ScreenGui = Instance.new("ScreenGui")
-local TextLabel = Instance.new("TextLabel")
-
-ScreenGui.Parent = game.CoreGui
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-TextLabel.Parent = ScreenGui
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.Position = UDim2.new(0.425278842, 0, 0.265460044, 0)
-TextLabel.Size = UDim2.new(0, 200, 0, 50)
-TextLabel.Font = Enum.Font.SourceSans
-TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextWrapped = true
-Player.CharacterAdded:Connect(function()
-    ScreenGui:Destroy()
-end)
-
-repeat
-    Player.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Ignored.Shop["[Flowers] - $5"].Head.Position.X, game:GetService("Workspace").Ignored.Shop["[Flowers] - $5"].Head.Position.Y - 5, game:GetService("Workspace").Ignored.Shop["[Flowers] - $5"].Head.Position.Z)
-    fireclickdetector(game:GetService("Workspace").Ignored.Shop["[Flowers] - $5"].ClickDetector)
-    Count = 0 
-    for i,v in pairs(game:GetService("Workspace").Ignored.ItemsDrop:GetDescendants()) do
-        local s,e = pcall(function()
-            if v:IsA('Tool') then
-                repeat 
-                    Player.Character.HumanoidRootPart.CFrame = CFrame.new(v.Parent.Position)  
-                    task.wait()
-                until not v
+                game.Players.LocalPlayer.Character.Name = 'Deleted'
             end
-        end) if e then print(e) end
-    end
-    for i,v in pairs(Player.Backpack:GetChildren()) do
-        if v:IsA('Tool') then
-            Count = Count + 1
-        end
-    end
-    for i,v in pairs(Player.Character:GetChildren()) do
-        if v:IsA('Tool') then
-            Count = Count + 1
-        end   
-    end
-    TextLabel.Text = 'You have '.. tostring(Count) .. ' items, \n it will crash at 451 items'
-    task.wait()
-    until Count >= 451
-    
-    Player.Character.HumanoidRootPart.CFrame = CFrame.new(0,99999999,0)
-    local Lit = false
-    coroutine.resume(coroutine.create(function()
-        while not Lit do 
-            game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false)
-            task.wait()
-        end
-    end))
-    for i,v in pairs(Player.Backpack:GetChildren()) do
-        if v:IsA('Tool') then
-            v.Parent = Player.Character
-        end
-    end
-    
-    local T = 0
-    repeat
-        for i,v in pairs(Player.Backpack:GetChildren()) do
-            if v:IsA('Tool') then
-                v.Parent = Player.Character
+            
+            function announce(title,text,time)
+                game.StarterGui:SetCore("SendNotification", {
+                    Title = title;
+                    Text = text;
+                    Duration = time;
+                })
             end
-        end
-        T = T + 1
-    until T >= 35
- 
- 
-    wait(3)
-    Lit = true
-    DeleteChar()
-end)
-
-AbuseV3.MouseButton1Click:Connect(function()
-    SwagmodeCrasher.Enabled = false
-    local ToolDupe = Instance.new("ScreenGui")
-    local CrashMenu = Instance.new("Frame")
-    local TextBox = Instance.new("TextBox")
-    local UICorner = Instance.new("UICorner")
-    local Title = Instance.new("TextLabel")
-    local Title_2 = Instance.new("TextLabel")
-    local Duper = Instance.new("TextButton")
-    local UICorner_2 = Instance.new("UICorner")
-    local ToolCount = Instance.new("Frame")
-    local UICorner_3 = Instance.new("UICorner")
-    local Title_3 = Instance.new("TextLabel")
-    local TotalTools = Instance.new("TextLabel")
-
-    ToolDupe.Name = "ToolDupe"
-    ToolDupe.Parent = game.CoreGui
-    ToolDupe.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    
-    CrashMenu.Name = "CrashMenu"
-    CrashMenu.Parent = ToolDupe
-    CrashMenu.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-    CrashMenu.Position = UDim2.new(0.139142051, 0, 0.567145526, 0)
-    CrashMenu.Size = UDim2.new(0.336566031, 0, 0.290877104, 0)
-    
-    TextBox.Parent = CrashMenu
-    TextBox.BackgroundColor3 = Color3.fromRGB(134, 134, 134)
-    TextBox.Position = UDim2.new(0.192218289, 0, 0.285238624, 0)
-    TextBox.Size = UDim2.new(0.612767458, 0, 0.145121485, 0)
-    TextBox.Font = Enum.Font.SourceSans
-    TextBox.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
-    TextBox.PlaceholderText = "[Username here]"
-    TextBox.Text = ""
-    TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
-    TextBox.TextScaled = true
-    TextBox.TextSize = 20.000
-    TextBox.TextWrapped = true
-    
-    UICorner.Parent = CrashMenu
-    
-    Title.Name = "Title"
-    Title.Parent = CrashMenu
-    Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Title.BackgroundTransparency = 1.000
-    Title.Position = UDim2.new(0.192218289, 0, 0.0741653293, 0)
-    Title.Size = UDim2.new(0.614786744, 0, 0.175234616, 0)
-    Title.Font = Enum.Font.GothamBlack
-    Title.Text = "[Player1] Put the username of the player you want to dupe tools for"
-    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Title.TextScaled = true
-    Title.TextSize = 14.000
-    Title.TextWrapped = true
-    
-    Title_2.Name = "Title"
-    Title_2.Parent = CrashMenu
-    Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Title_2.BackgroundTransparency = 1.000
-    Title_2.Position = UDim2.new(0.190112561, 0, 0.544559121, 0)
-    Title_2.Size = UDim2.new(0.614786744, 0, 0.175234616, 0)
-    Title_2.Font = Enum.Font.GothamBlack
-    Title_2.Text = "[Player2] Click this button to verify this account is the one recieving duped tools"
-    Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Title_2.TextScaled = true
-    Title_2.TextSize = 14.000
-    Title_2.TextWrapped = true
-    
-    Duper.Name = "Duper"
-    Duper.Parent = CrashMenu
-    Duper.BackgroundColor3 = Color3.fromRGB(74, 255, 131)
-    Duper.Position = UDim2.new(0.296003908, 0, 0.751902223, 0)
-    Duper.Size = UDim2.new(0.407024682, 0, 0.18305853, 0)
-    Duper.AutoButtonColor = false
-    Duper.Font = Enum.Font.SourceSansBold
-    Duper.Text = "READ"
-    Duper.TextColor3 = Color3.fromRGB(0, 0, 0)
-    Duper.TextSize = 30.000
-    Duper.TextWrapped = true
-    
-    UICorner_2.Parent = Duper
-    
-    ToolCount.Name = "ToolCount"
-    ToolCount.Parent = ToolDupe
-    ToolCount.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-    ToolCount.Position = UDim2.new(0.713202953, 0, 0.538033366, 0)
-    ToolCount.Size = UDim2.new(0.223171324, 0, 0.168614671, 0)
-    ToolCount.Visible = false
-    
-    UICorner_3.Parent = ToolCount
-    
-    Title_3.Name = "Title"
-    Title_3.Parent = ToolCount
-    Title_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    Title_3.BackgroundTransparency = 1.000
-    Title_3.Position = UDim2.new(0.062016163, 0, 0.166438401, 0)
-    Title_3.Size = UDim2.new(0.875191212, 0, 0.336340696, 0)
-    Title_3.Font = Enum.Font.GothamBlack
-    Title_3.Text = "You will crash when you have 650 tools"
-    Title_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Title_3.TextScaled = true
-    Title_3.TextSize = 14.000
-    Title_3.TextWrapped = true
-    
-    TotalTools.Name = "TotalTools"
-    TotalTools.Parent = ToolCount
-    TotalTools.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    TotalTools.BackgroundTransparency = 1.000
-    TotalTools.Position = UDim2.new(0.062015973, 0, 0.69197011, 0)
-    TotalTools.Size = UDim2.new(0.875191212, 0, 0.18095164, 0)
-    TotalTools.Font = Enum.Font.GothamBlack
-    TotalTools.Text = "Tools : 3/450"
-    TotalTools.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TotalTools.TextSize = 30.000
-    TotalTools.TextWrapped = true
-    
-    local DestroyScript = true
-    local Respawned = true
-    local F = false
-    TextBox.FocusLost:Connect(function()
-        for i,v in pairs(game.Players:GetChildren()) do
-            if (string.sub(string.lower(v.Name),1,string.len(TextBox.Text))) == string.lower(TextBox.Text) then
-                TextBox.Text = v.Name
-            elseif (string.sub(string.lower(v.DisplayName),1,string.len(TextBox.Text))) == string.lower(TextBox.Text) then
-                TextBox.Text = v.Name
+            
+            if not Player.Character then
+                Player.CharacterAdded:Wait()
             end
-        end
-        if F == false then
-            F = true
-    
+            
             for i,v in pairs(game.Workspace.Ignored.Shop:GetChildren()) do
-                if not string.find(v.Name, 'Ammo') and not string.find(v.Name, 'Armor') and not string.find(v.Name, 'Phone') and not string.find(v.Name,'Bike') and not string.find(v.Name, 'Mask') and not string.find(v.Name, 'SG') and not string.find(v.Name,'Moveset') and v.Price.Value > 300 then
+                if not string.find(v.Name, 'Ammo') and not string.find(v.Name, 'Armor') and not string.find(v.Name, 'Phone') and not string.find(v.Name,'Bike') and not string.find(v.Name, 'Mask') and not string.find(v.Name, 'SG') and not string.find(v.Name,'Moveset') then
                     local Name = string.gsub(string.split(v.Name, '-')[1], ' ', '')
                     local Owned = false
-                    if not Player.Character:FindFirstChild(Name) and not Player.Backpack:FindFirstChild(Name) and Player.DataFolder.Inventory:FindFirstChild(Name) then
+                    if not Player.Character:FindFirstChild(Name) and not Player.Backpack:FindFirstChild(Name) then
                         repeat
                             Player.Character.HumanoidRootPart.CFrame = v.Head.CFrame
                             fireclickdetector(v:FindFirstChildOfClass('ClickDetector'))
@@ -920,253 +213,97 @@ AbuseV3.MouseButton1Click:Connect(function()
                 end
             end
             
-            game.Players.LocalPlayer.CharacterAdded:Connect(function(Char)
-                local Destroyed = false
-                Respawned = true
-                local function DestroyScript()
-                    for i,v in pairs(Char:GetChildren()) do
-                        if v:IsA('Script') then
-                            if 1 == 1 then
-                                if DestroyScript then
-                                    v:Destroy()
-                                end
-                                Destroyed = true
-                            end
-                        end
-                    end
-                    game.RunService.RenderStepped:Wait()
-                end
-                repeat
-                    local s,e = pcall(DestroyScript)
-                until Destroyed == true
+            local Count
+            
+            local ScreenGui = Instance.new("ScreenGui")
+            local TextLabel = Instance.new("TextLabel")
+            
+            ScreenGui.Parent = game.CoreGui
+            ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+            
+            TextLabel.Parent = ScreenGui
+            TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel.Position = UDim2.new(0.425278842, 0, 0.265460044, 0)
+            TextLabel.Size = UDim2.new(0, 200, 0, 50)
+            TextLabel.Font = Enum.Font.SourceSans
+            TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+            TextLabel.TextScaled = true
+            TextLabel.TextSize = 14.000
+            TextLabel.TextWrapped = true
+            Player.CharacterAdded:Connect(function()
+                ScreenGui:Destroy()
             end)
             
-            for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                if v:IsA('MeshPart') or v:IsA('Part') or v:IsA('Accessory') then
-                    v:Destroy()
-                end
-            end
-
-            while task.wait() do
-                if DestroyScript then
+            local Crew = tonumber(Player.DataFolder.Information.Crew.Value)
+            repeat
+                Player.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Ignored.Shop["[Flowers] - $5"].Head.Position.X, game:GetService("Workspace").Ignored.Shop["[Flowers] - $5"].Head.Position.Y - 5, game:GetService("Workspace").Ignored.Shop["[Flowers] - $5"].Head.Position.Z)
+                fireclickdetector(game:GetService("Workspace").Ignored.Shop["[Flowers] - $5"].ClickDetector)
+                Count = 0 
+                for i,v in pairs(game:GetService("Workspace").Ignored.ItemsDrop:GetDescendants()) do
                     local s,e = pcall(function()
-                        if game.Players:FindFirstChild(TextBox.Text) and Player.Character.Parent.Name == 'Players' and Player.Character:FindFirstChild('FULLY_LOADED_CHAR') then
-                            if game.Players:FindFirstChild(TextBox.Text).Character:FindFirstChild('LeftHand') and game.Players:FindFirstChild(TextBox.Text).Character.HumanoidRootPart.Position.Z < 15000 then
-                                coroutine.resume(coroutine.create(function()
-                                    pcall(function()
-                                        game.Players.LocalPlayer.Backpack:FindFirstChild('Combat'):Destroy()
-                                    end)
-                                    
-                                    if not Player.Character:FindFirstChildOfClass('Script') then
-                                        Player.Character.Humanoid.Name = 1
-                                        local l = Player.Character["1"]:Clone()
-                                        l.Parent = Player.Character
-                                        l.Name = "Humanoid"
-                                        Player.Character["1"]:Destroy()
-                                                
-                                        local tool = nil
-                                        local Enemy = game.Players:FindFirstChild(TextBox.Text)
-                                            
-                                        tool = Player.Backpack:FindFirstChildOfClass('Tool')
-                                        tool.Parent = Player.Character
-                                        pcall(function()
-                                            tool.OwnerTag:Destroy()
-                                        end)
-                                            
-                                            
-                                        Player.Character["RightHand"].CFrame = Enemy.Character.Head.CFrame
-                                        Enemy.Character:SetPrimaryPartCFrame(tool.Handle.CFrame)
-                                        repeat
-                                            wait()
-                                        until tool.Parent ~= Player.Character
-                                        wait(1)
-                                        if Respawned then
-                                            Respawned = false
-                                            for i,v in pairs(Player.Character:GetChildren()) do
-                                                if v:IsA('MeshPart') or v:IsA('Part') or v:IsA('Accessory') then
-                                                    v:Destroy()
-                                                end
-                                            end
-                                        end
-                                    else
-                                        Player.Character:FindFirstChildOfClass('Script'):Destroy()
-                                    end
-                                end))
-                            end
+                        if v:IsA('Tool') then
+                            repeat 
+                                Player.Character.HumanoidRootPart.CFrame = CFrame.new(v.Parent.Position)  
+                                task.wait()
+                            until not v
                         end
                     end) if e then print(e) end
                 end
-            end
-        end
-    end)
-    
-    
-    
-    Duper.MouseButton1Click:Connect(function()
-        
-        game.Players.LocalPlayer.CharacterAdded:Connect(function(Char)
-            local Destroyed = false
-            local function DestroyScript()
-                for i,v in pairs(Char:GetChildren()) do
-                    if v:IsA('Script') then
-                        if 1 == 1 then
-                            if DestroyScript then
-                                v:Destroy()
-                            end
-                                Destroyed = true
-                            end
-                        end
-                    end
-                    game.RunService.RenderStepped:Wait()
-                end
-            repeat
-                local s,e = pcall(DestroyScript)
-            until Destroyed == true
-        end)
-        
-        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-            if v:IsA('MeshPart') or v:IsA('Part') or v:IsA('Accessory') then
-                v:Destroy()
-            end
-        end
-        
-        CrashMenu.Visible = false
-        DestroyScript = false
-        ToolCount.Visible = true
-       -- while wait() do
-            pcall(function()
-                local Count = 0
-                repeat
-                    pcall(function()
-                        Count = 0 
-                        for i,v in pairs(Player.Backpack:GetChildren()) do
-                            if v:IsA('Tool') then
-                                Count = Count + 1
-                            end
-                        end
-                        for i,v in pairs(Player.Character:GetChildren()) do
-                            if v:IsA('Tool') then
-                                Count = Count + 1
-                            end   
-                        end
-                        TotalTools.Text = 'Tools : '.. tostring(Count) .. ' / 675'
-                        task.wait()
-                    end)
-                until Count >= 675
                 
-                Player.Character.LeftHand:Destroy()
-                wait(3)
-                coroutine.resume(coroutine.create(function()
-                    game.Lighting.FogEnd = 1254124124
-                    Player.Character.HumanoidRootPart.CFrame = CFrame.new(Player.Character.HumanoidRootPart.Position + Vector3.new(0,250,0))
-                    local torso = game.Players.LocalPlayer.Character.Head
-                    local bv = Instance.new("BodyVelocity", torso)
-                    bv.velocity = Vector3.new(0,0.1,0)
-                    bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-                    wait(4)
-                    bv:Destroy()
-                end))
-                local Lit = false
-                coroutine.resume(coroutine.create(function()
-                    while not Lit do 
-                        game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false)
-                        task.wait()
+            
+            
+                if Crew then
+                    game:GetService("ReplicatedStorage").MainEvent:FireServer("JoinCrew",tostring(Crew))
+                    for i,v in pairs(Player.Backpack:GetChildren()) do
+                        if v:IsA('Tool') and v.Name == '[SprayCan]' then
+                            v.Parent = Player.Character
+                        end
                     end
-                end))
+                    game:GetService("ReplicatedStorage").MainEvent:FireServer("JoinCrew",tostring(Crew))
+                    task.wait()
+                    game:GetService("ReplicatedStorage").MainEvent:FireServer("LeaveCrew")
+                end
+                
+                for i,v in pairs(Player.Backpack:GetChildren()) do
+                    if v:IsA('Tool') then
+                        Count = Count + 1
+                    end
+                end
+                for i,v in pairs(Player.Character:GetChildren()) do
+                    if v:IsA('Tool') then
+                        Count = Count + 1
+                    end   
+                end
+                TextLabel.Text = 'You have '.. tostring(Count) .. ' items, \n it will crash at 1050 items'
+                task.wait()
+            until Count >= 1050
+            
+            wait(1)
+            Player.Character.HumanoidRootPart.CFrame = CFrame.new(0,99999999,0)
+            wait(3)
+            
+            for i,v in pairs(Player.Backpack:GetChildren()) do
+                if v:IsA('Tool') then
+                    v.Parent = Player.Character
+                end
+            end
+                
+            local T = 0
+            repeat
                 for i,v in pairs(Player.Backpack:GetChildren()) do
                     if v:IsA('Tool') then
                         v.Parent = Player.Character
                     end
                 end
-
-                local T = 0
-                repeat
-                    for i,v in pairs(Player.Backpack:GetChildren()) do
-                        if v:IsA('Tool') then
-                            v.Parent = Player.Character
-                        end
-                    end
-                    T = T + 1
-                until T >= 35
- 
- 
-                wait(3)
-                Lit = true
-                DeleteChar()
-
-            end)
-        --end
-    end)
-end)
-
-local Used = false
-CrewCrash.MouseButton1Click:Connect(function()
-    if Player.DataFolder.Information:FindFirstChild('Crew') and tonumber(Player.DataFolder.Information.Crew.Value) then
-        made_by_Lerk7643:Destroy()
-        if Used then
-            return;
+                T = T + 1
+            until T >= 35
+            
+            DeleteChar()
+            
+        else
+            announce('You need atleast 100k to use this', 'sry :(', 10)
         end
-        Used = true
-        CrewCrash.Text = 'Crashing..'
-
-        local function CrewCrasher()    
-            local Crew = tonumber(Player.DataFolder.Information.Crew.Value)
-
-                local TotalTools = 0
-                local ToolCheck = 0
-                repeat 
-                    for i,v in pairs(Player.Backpack:GetChildren()) do
-                        if v:IsA('Tool') and v.Name == '[SprayCan]' then
-                            TotalTools = TotalTools + 1
-                            v.Parent = Player.Character
-                            pcall(function()
-                                local bv = Instance.new("BodyVelocity", v.Handle)
-                                bv.velocity = Vector3.new(0,0.1,0)
-                                bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-                            end)
-                        end
-                    end
-                    UNIT_5.Text = tostring(TotalTools) .. ' out of 1200'
-                    game:GetService("ReplicatedStorage").MainEvent:FireServer("JoinCrew",tostring(Crew))
-                    task.wait(1)
-                    game:GetService("ReplicatedStorage").MainEvent:FireServer("LeaveCrew")
-                                        task.wait(1)
-
-                until TotalTools >= 1200
-                
-                Player.Character.LeftHand:Destroy()
-                wait(3)
-                coroutine.resume(coroutine.create(function()
-                    game.Lighting.FogEnd = 1254124124
-                    Player.Character.HumanoidRootPart.CFrame = CFrame.new(Player.Character.HumanoidRootPart.Position + Vector3.new(9999999,9999999,0))
-                    local torso = game.Players.LocalPlayer.Character.Head
-                    local bv = Instance.new("BodyVelocity", torso)
-                    bv.velocity = Vector3.new(0,0.1,0)
-                    bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-                end))
-            
-                for i,v in pairs(Player.Backpack:GetChildren()) do
-                    if v:IsA('Tool') and v.Name == '[SprayCan]' then
-                        v.Parent = Player.Character
-                    end
-                end
-            
-                local T = 0
-                repeat
-                    for i,v in pairs(Player.Backpack:GetChildren()) do
-                        if v:IsA('Tool') and v.Name == '[SprayCan]' then
-                            v.Parent = Player.Character
-                        end
-                    end
-                    T = T + 1
-                until T >= 35
-             
-                wait(3)
-                DeleteChar()
-            end
-            CrewCrasher()
-            Player.CharacterAdded:Connect(CrewCrasher)
     else
-        announce('You have to join a crew', 'join crews on the bottom left', 5)
+        announce('Please join a DH Crew and try again', '(person button on the bottom left)', 10)
     end
 end)

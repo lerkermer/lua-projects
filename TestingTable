@@ -1,6 +1,3 @@
 local ids = {
-  12312321321, -- Lerkermer
-  12312321321, -- Lerkermer2
-  12312321321, -- Lerkermer3
-
+    'Lerkermer4 -- Joe!'
 }

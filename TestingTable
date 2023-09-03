@@ -1,1 +1,6 @@
-"local ids = {\n    '1231212 -- 2142414212'\n}"
+local ids = {
+  12312321321, -- Lerkermer
+  12312321321, -- Lerkermer2
+  12312321321, -- Lerkermer3
+
+}

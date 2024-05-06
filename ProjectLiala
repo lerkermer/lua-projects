@@ -4,6 +4,8 @@ local Mouse = Player:GetMouse()
 getgenv().MouseLocked = false
 getgenv().MobileHIT = Vector3.new(0,0,0)
 
+local Connect = nil
+
 local IgnoreList = { game.Workspace.Ignored }
 local Char = Player.Character:GetChildren()
 for i,v in pairs(Char) do
@@ -139,6 +141,81 @@ local Setup = function()
     MainScreen.Promote.ImageButton.AnchorPoint = Vector2.new(.5,.5)
     MainScreen.Promote.ImageButton.Size = UDim2.new(1,0,1,0)
 
+    local UILock = true
+
+    local UILockButton = BottomLeft.Frame.Z:Clone()
+    UILockButton.Parent = BottomLeft.Frame
+    UILockButton.Image = 'rbxassetid://8229818968'
+    UILockButton.Name = 'C'
+    UILockButton.MouseButton1Click:Connect(function()
+        if UILock then
+            UILock = false
+            UILockButton.Image = 'rbxassetid://8229820949'
+        else
+            UILock = true
+            UILockButton.Image = 'rbxassetid://8229818968'
+        end
+    end)
+
+    local function makeDraggable(uiElement1, uiElement2)
+        local dragging
+        local dragInput
+        local dragStart
+        local startPos1, startPos2
+    
+        local function update(input)
+            if UILock then
+                return;
+            end
+
+            local delta = input.Position - dragStart
+            uiElement1.Position = UDim2.new(startPos1.X.Scale, startPos1.X.Offset + delta.X, startPos1.Y.Scale, startPos1.Y.Offset + delta.Y)
+            uiElement2.Position = UDim2.new(startPos2.X.Scale, startPos2.X.Offset + delta.X, startPos2.Y.Scale, startPos2.Y.Offset + delta.Y)
+        end
+    
+        uiElement1.InputBegan:Connect(function(input)
+            if UILock then
+                return;
+            end
+
+            if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+                dragging = true
+                dragStart = input.Position
+                startPos1 = uiElement1.Position
+                startPos2 = uiElement2.Position
+    
+                input.Changed:Connect(function()
+                    if input.UserInputState == Enum.UserInputState.End then
+                        dragging = false
+                    end
+                end)
+            end
+        end)
+    
+        uiElement1.InputChanged:Connect(function(input)
+            if UILock then
+                return;
+            end
+
+            if (input.UserInputType == Enum.UserInputType.MouseMovement and dragging) or
+                (input.UserInputType == Enum.UserInputType.Touch and input == dragInput and dragging) then
+                update(input)
+            end
+        end)
+    
+        uiElement1.InputEnded:Connect(function(input)
+            if UILock then
+                return;
+            end
+
+            if input.UserInputType == Enum.UserInputType.Touch then
+                dragging = false
+            end
+        end)
+    end
+
+    makeDraggable(MainScreen.Bar.HP, MainScreen.Bar.Armor)
+
     local Enabled = false
     local MouseLocked = false
 
@@ -211,6 +288,9 @@ end
 
 Player.CharacterAdded:Connect(function()
     getgenv().MouseLocked = false
+    pcall(function()
+        Connect:Disconnect()
+    end)
     wait(1.5)
     Setup()
 end)

@@ -1,0 +1,219 @@
+local Player = game.Players.LocalPlayer
+local Mouse = Player:GetMouse()
+
+getgenv().MouseLocked = false
+getgenv().MobileHIT = Vector3.new(0,0,0)
+
+local IgnoreList = { game.Workspace.Ignored }
+local Char = Player.Character:GetChildren()
+for i,v in pairs(Char) do
+	table.insert(IgnoreList, v)
+end
+
+for i,v in pairs(getconnections(game:GetService("LogService").MessageOut)) do
+    v:Disconnect()
+end
+
+local function getMobileHit(ignoreList)
+	task.wait()
+	local viewportPointRay = game.Workspace:FindFirstChildOfClass('Camera'):ViewportPointToRay(Player.PlayerGui.MainScreenGui.Aim.AbsolutePosition.X, Player.PlayerGui.MainScreenGui.Aim.AbsolutePosition.Y + 35) --+17  +35
+	local extendedRay = Ray.new(viewportPointRay.Origin, viewportPointRay.Direction * 1000)
+
+	for i,v in pairs(Player.Character:GetChildren()) do
+		table.insert(ignoreList, v)
+	end
+
+	return workspace:FindPartOnRayWithIgnoreList(extendedRay, ignoreList)
+end
+
+
+
+
+if getgenv().Loaded == nil then
+    getgenv().Loaded = true
+    local mt = getrawmetatable(game)
+    local old = mt.__namecall
+    setreadonly(mt,false)
+    mt.__namecall = newcclosure(function(self, ...)
+        local args = {...}
+         if getnamecallmethod() == 'FireServer' and self.Name == 'MainEvent' then
+            if tostring(args[1]) == 'UpdateMousePos' then
+                if getgenv().MouseLocked == true then
+                    args[2] = getgenv().MobileHIT
+
+                    local Part = Instance.new('Part')
+                    --Part.Parent = workspace.Ignored
+                    Part.Position = getgenv().MobileHIT
+                    Part.Size = Vector3.new(1,1,1)
+                    Part.Anchored = true
+
+                    --game:GetService('Debris'):AddItem(Part, 3)
+                end
+            end
+        end
+        return old(self, unpack(args))
+    end)
+end
+
+Player.Character.Humanoid.CameraOffset = Vector3.new(0,0,0)
+Player.Character.Humanoid.AutoRotate = true
+game:GetService('UserInputService').MouseBehavior = Enum.MouseBehavior.Default
+
+local Setup = function()
+
+    local MainScreen = Player.PlayerGui:WaitForChild('MainScreenGui')
+    MainScreen.GunCombatToggle.Text = ''
+    MainScreen.GunCombatToggle.BackgroundTransparency = 1
+
+    BottomLeft = MainScreen.Crew.BottomLeft
+
+    local OLDMouseLock = BottomLeft.Frame.MouseLock
+    OLDMouseLock.Parent = BottomLeft
+    OLDMouseLock.Visible = true
+    OLDMouseLock.Position = UDim2.new(0,85,0,2)
+
+    MouseLock = OLDMouseLock:Clone()
+    MouseLock.Parent = BottomLeft
+    OLDMouseLock:Destroy()
+
+    BottomLeft.Frame.UIListLayout.SortOrder = 'Name'
+    BottomLeft.Frame.UIListLayout.FillDirection = Enum.FillDirection.Vertical
+    BottomLeft.Frame.UIListLayout.VerticalAlignment = 'Bottom'
+
+
+    MainScreen.ReportHUD:Destroy()
+
+    local OLDToggleBottomLeft = BottomLeft.Frame.Report
+    OLDToggleBottomLeft.Image = 'rbxassetid://14403995847'
+    OLDToggleBottomLeft.ImageTransparency = 1
+    OLDToggleBottomLeft.Name = 'ZZZ'
+    OLDToggleBottomLeft.Visible = true
+
+    local ToggleBottomLeft = OLDToggleBottomLeft:Clone()
+    ToggleBottomLeft.AnchorPoint = Vector2.new(.5,.5)
+    ToggleBottomLeft.Position = UDim2.new(.5,0,.5,0)
+    ToggleBottomLeft.ImageTransparency = 0
+    ToggleBottomLeft.Parent = OLDToggleBottomLeft
+
+    BottomLeft.Frame.Settings.Name = 'ZZ'
+    BottomLeft.Frame.Skins.Name = 'Z'
+    BottomLeft.Frame:FindFirstChild('ImageLabel',true).Parent.Name = 'A'
+    BottomLeft.Frame.Edit.Name = 'HiddenEdit'
+
+    local EmoteButton = BottomLeft.Frame.Z:Clone()
+    EmoteButton.Parent = BottomLeft.Frame
+    EmoteButton.Image = 'rbxassetid://15290394895'
+    EmoteButton.Name = 'B'
+
+    pcall(function()
+        MainScreen.AnimationPack.Visible = false
+        MainScreen.AnimationPlusPack.Visible = false
+    end)
+
+    EmoteButton.MouseButton1Click:Connect(function()
+        if MainScreen.AnimationPack.Visible == false then
+            MainScreen.AnimationPack.Visible = true
+            MainScreen.AnimationPlusPack.Visible = true
+        else
+            MainScreen.AnimationPack.Visible = false
+            MainScreen.AnimationPlusPack.Visible = false
+        end
+    end)
+
+
+    MainScreen.Bar.Energy.Visible = false
+    MainScreen.Bar.HP.Picture.Visible = false
+    MainScreen.Bar.Armor.Picture.Visible = false
+    MainScreen.Bar.Armor.Picture.Visible = false
+    MainScreen.Bar.Armor.TextLabel.Visible = false
+
+    MainScreen.Bar.HP.Size = UDim2.new(0,170,0,18)
+    MainScreen.Bar.HP.Position = UDim2.new(0.5,0,1,-90)
+
+    MainScreen.Bar.Armor.Size = UDim2.new(0,170,0,7)
+    MainScreen.Bar.Armor.Position = UDim2.new(0.5,0,1,-76)
+
+    MainScreen.MoneyText.TextSize = 16
+    MainScreen.Promote.Size = UDim2.new(0,20,0,20)
+    MainScreen.Promote.Position = UDim2.new(1,-30,1,-65)
+    MainScreen.Promote.ImageButton.AnchorPoint = Vector2.new(.5,.5)
+    MainScreen.Promote.ImageButton.Size = UDim2.new(1,0,1,0)
+
+    local Enabled = false
+    local MouseLocked = false
+
+    local function ToggleButtons()
+        if Enabled == true then
+            ToggleBottomLeft.Rotation = 0
+            Enabled = false
+        else
+            ToggleBottomLeft.Rotation = 180
+            Enabled = true
+        end
+
+        local Blacklist = {'Vehicle', 'ZZZ'}
+        for i,v in pairs(BottomLeft.Frame:GetChildren()) do
+            if v:isA('ImageButton') and not table.find(Blacklist, v.Name) then
+                if (v.Name == 'HiddenEdit' or v.Name == 'Edit') and (Player:FindFirstChild('OwnHouseTag')) then
+                    if Enabled then
+                        v.Visible = Enabled
+                        v.Name = 'Edit'
+                    else
+                        v.Name = 'HiddenEdit'
+                        v.Visible = false
+                    end
+                else
+                    v.Visible = Enabled
+                end
+            end
+        end
+
+
+        pcall(function()
+            
+        end)
+    end
+
+
+    ToggleBottomLeft.MouseButton1Click:Connect(function()
+        ToggleButtons()
+    end)
+
+    MouseLock.MouseButton1Click:Connect(function()
+        if getgenv().MouseLocked == false then
+            getgenv().MouseLocked = true
+
+            Player.Character.Humanoid.AutoRotate = false
+
+            while getgenv().MouseLocked == true do
+                Player.Character.Humanoid.CameraOffset = Vector3.new(0,1.2,0)
+                --game:GetService('UserInputService').MouseBehavior = Enum.MouseBehavior.LockCenter
+                MainScreen.Aim.Position = UDim2.new(0.5,0,.5, -19)
+
+                local v, pos = getMobileHit(IgnoreList)
+                getgenv().MobileHIT = pos
+
+                Player.Character.HumanoidRootPart.CFrame = CFrame.new(Player.Character.HumanoidRootPart.Position, Player.Character.HumanoidRootPart.Position+Vector3.new(game.Workspace:FindFirstChildOfClass('Camera').CFrame.lookVector.X,0,game.Workspace:FindFirstChildOfClass('Camera').CFrame.lookVector.Z)) 
+                game:GetService('RunService').RenderStepped:Wait()
+            end
+        else
+            getgenv().MouseLocked = false
+            Player.Character.Humanoid.CameraOffset = Vector3.new(0,0,0)
+            Player.Character.Humanoid.AutoRotate = true
+            game:GetService('UserInputService').MouseBehavior = Enum.MouseBehavior.Default
+        end
+    end)
+
+    ToggleButtons()
+    ToggleButtons()
+end
+
+
+Player.CharacterAdded:Connect(function()
+    getgenv().MouseLocked = false
+    wait(1.5)
+    Setup()
+end)
+
+
+Setup()

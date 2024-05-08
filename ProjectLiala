@@ -61,6 +61,7 @@ Player.Character.Humanoid.CameraOffset = Vector3.new(0,0,0)
 Player.Character.Humanoid.AutoRotate = true
 game:GetService('UserInputService').MouseBehavior = Enum.MouseBehavior.Default
 
+local ToggleInventoryButton
 local Setup = function()
 
     local MainScreen = Player.PlayerGui:WaitForChild('MainScreenGui')
@@ -73,6 +74,11 @@ local Setup = function()
     OLDMouseLock.Parent = BottomLeft
     OLDMouseLock.Visible = true
     OLDMouseLock.Position = UDim2.new(0,85,0,2)
+
+    ToggleInventoryButton = OLDMouseLock:Clone()
+    ToggleInventoryButton.Parent = BottomLeft
+    ToggleInventoryButton.Image = 'rbxassetid://6870729295'
+    ToggleInventoryButton.Position = UDim2.new(0,122,0,2)
 
     MouseLock = OLDMouseLock:Clone()
     MouseLock.Parent = BottomLeft
@@ -231,13 +237,15 @@ local Setup = function()
         local Blacklist = {'Vehicle', 'ZZZ'}
         for i,v in pairs(BottomLeft.Frame:GetChildren()) do
             if v:isA('ImageButton') and not table.find(Blacklist, v.Name) then
-                if (v.Name == 'HiddenEdit' or v.Name == 'Edit') and (Player:FindFirstChild('OwnHouseTag')) then
-                    if Enabled then
-                        v.Visible = Enabled
-                        v.Name = 'Edit'
-                    else
-                        v.Name = 'HiddenEdit'
-                        v.Visible = false
+                if (v.Name == 'HiddenEdit' or v.Name == 'Edit') then
+                    if (Player:FindFirstChild('OwnHouseTag')) then
+                        if Enabled then
+                            v.Visible = Enabled
+                            v.Name = 'Edit'
+                        else
+                            v.Name = 'HiddenEdit'
+                            v.Visible = false
+                        end
                     end
                 else
                     v.Visible = Enabled
@@ -296,4 +304,1029 @@ Player.CharacterAdded:Connect(function()
 end)
 
 
+
+
+--[[ INVENTROY  ]]
+
+local function LoadCustomUI()
+	local swag_mode_inventory = Instance.new("ScreenGui")
+	swag_mode_inventory.IgnoreGuiInset = false
+	swag_mode_inventory.ResetOnSpawn = false
+	swag_mode_inventory.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	swag_mode_inventory.Name = "SwagModeInventory"
+	swag_mode_inventory.Parent = game.CoreGui
+
+	local frame = Instance.new("Frame")
+	frame.BackgroundColor3 = Color3.new(1, 1, 1)
+	frame.BackgroundTransparency = 0.9900000095367432
+	frame.BorderColor3 = Color3.new(0, 0, 0)
+	frame.BorderSizePixel = 0
+	frame.Size = UDim2.new(1, 0, 1, 0)
+	frame.Visible = true
+	frame.Parent = swag_mode_inventory
+
+	local uilist_layout = Instance.new("UIListLayout")
+	uilist_layout.Padding = UDim.new(0, 5)
+	uilist_layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	uilist_layout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+	uilist_layout.Parent = frame
+
+	local _1inventory = Instance.new("Frame")
+	_1inventory.AnchorPoint = Vector2.new(0.5, 0.5)
+	_1inventory.BackgroundColor3 = Color3.new(0, 0, 0)
+	_1inventory.BackgroundTransparency = 0.8999999761581421
+	_1inventory.BorderColor3 = Color3.new(0, 0, 0)
+	_1inventory.BorderSizePixel = 0
+	_1inventory.ClipsDescendants = true
+	_1inventory.Position = UDim2.new(0.5, 0, 1.04097402, -150)
+	_1inventory.Size = UDim2.new(0.551999986, 0, 0.479000002, 0)
+	_1inventory.Visible = false
+	_1inventory.Name = "1_Inventory"
+	_1inventory.Parent = frame
+
+	local scrolling_frame = Instance.new("ScrollingFrame")
+	scrolling_frame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	scrolling_frame.CanvasSize = UDim2.new(0, 0, 0, 0)
+	scrolling_frame.ScrollBarImageColor3 = Color3.new(0, 0, 0)
+	scrolling_frame.Active = true
+	scrolling_frame.BackgroundColor3 = Color3.new(1, 1, 1)
+	scrolling_frame.BackgroundTransparency = 1
+	scrolling_frame.BorderColor3 = Color3.new(0, 0, 0)
+	scrolling_frame.BorderSizePixel = 0
+	scrolling_frame.Position = UDim2.new(0.0191845838, 0, 0.0266823173, 0)
+	scrolling_frame.Size = UDim2.new(0.958915055, 0, 0.950767517, 0)
+	scrolling_frame.Visible = true
+	scrolling_frame.Parent = _1inventory
+    scrolling_frame.ClipsDescendants = false
+
+	local inventory_grip = Instance.new("UIGridLayout")
+	inventory_grip.CellSize = UDim2.new(0.111000001, 0, 0.111000001, 0)
+	inventory_grip.SortOrder = Enum.SortOrder.LayoutOrder
+	inventory_grip.Name = "InventoryGrip"
+	inventory_grip.Parent = scrolling_frame
+
+	local uicorner = Instance.new("UICorner")
+	uicorner.Parent = _1inventory
+
+	local ratio = Instance.new("UIAspectRatioConstraint")
+	ratio.AspectRatio = 2.319999933242798
+	ratio.Name = "Ratio"
+	ratio.Parent = _1inventory
+
+	local resize = Instance.new("LocalScript")
+	resize.Name = "Resize"
+	resize.Parent = _1inventory
+
+	local _2hotbar = Instance.new("Frame")
+	_2hotbar.AnchorPoint = Vector2.new(0.5, 0.5)
+	_2hotbar.BackgroundColor3 = Color3.new(1, 1, 1)
+	_2hotbar.BackgroundTransparency = 1
+	_2hotbar.BorderColor3 = Color3.new(0, 0, 0)
+	_2hotbar.BorderSizePixel = 0
+	_2hotbar.Position = UDim2.new(0.496089488, 0, 0.969945788, -30)
+	_2hotbar.Size = UDim2.new(0.600000024, 0, 0.104999997, 0)
+	_2hotbar.Visible = true
+	_2hotbar.Name = "2_Hotbar"
+	_2hotbar.Parent = frame
+
+	local uilist_layout_2 = Instance.new("UIListLayout")
+	uilist_layout_2.Padding = UDim.new(0, 5)
+	uilist_layout_2.FillDirection = Enum.FillDirection.Horizontal
+	uilist_layout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	uilist_layout_2.Parent = _2hotbar
+
+	local _1 = Instance.new("ImageButton")
+	_1.ImageTransparency = 0.3499999940395355
+	_1.BackgroundColor3 = Color3.new(0, 0, 0)
+	_1.BackgroundTransparency = 0.8999999761581421
+	_1.BorderColor3 = Color3.new(0, 0, 0)
+	_1.BorderSizePixel = 0
+	_1.Position = UDim2.new(0.0300347004, 0, 0, 0)
+	_1.Size = UDim2.new(1, 0, 1, 0)
+	_1.Visible = true
+	_1.Name = "1"
+	_1.Parent = _2hotbar
+
+	local uistroke = Instance.new("UIStroke")
+	uistroke.Parent = _1
+    uistroke.Transparency = .7
+
+	local uicorner_2 = Instance.new("UICorner")
+	uicorner_2.Parent = _1
+
+	local uiaspect_ratio_constraint = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint.Parent = _1
+
+	local text_label = Instance.new("TextLabel")
+	text_label.Font = Enum.Font.GothamBold
+	text_label.Text = "[AIMLOCK]"
+	text_label.TextColor3 = Color3.new(1, 1, 1)
+	text_label.TextSize = 10
+	text_label.TextWrapped = true
+	text_label.AnchorPoint = Vector2.new(0.5, 0.5)
+	text_label.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_label.BackgroundTransparency = 1
+	text_label.BorderColor3 = Color3.new(0, 0, 0)
+	text_label.BorderSizePixel = 0
+	text_label.Position = UDim2.new(0.5, 0, 0.5, 0)
+	text_label.Size = UDim2.new(1, 0, 1, 0)
+	text_label.Visible = false
+	text_label.Parent = _1
+
+	local tool = Instance.new("ObjectValue")
+	tool.Name = "Tool"
+	tool.Parent = _1
+
+	local _6 = Instance.new("ImageButton")
+	_6.ImageTransparency = 0.3499999940395355
+	_6.BackgroundColor3 = Color3.new(0, 0, 0)
+	_6.BackgroundTransparency = 0.8999999761581421
+	_6.BorderColor3 = Color3.new(0, 0, 0)
+	_6.BorderSizePixel = 0
+	_6.Size = UDim2.new(1, 0, 1, 0)
+	_6.Visible = true
+	_6.Name = "6"
+	_6.Parent = _2hotbar
+
+	local uistroke_2 = Instance.new("UIStroke")
+	uistroke_2.Parent = _6
+    uistroke_2.Transparency = .7
+
+	local uicorner_3 = Instance.new("UICorner")
+	uicorner_3.Parent = _6
+
+	local uiaspect_ratio_constraint_2 = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint_2.Parent = _6
+
+	local text_label_2 = Instance.new("TextLabel")
+	text_label_2.Font = Enum.Font.GothamBold
+	text_label_2.Text = "[AIMLOCK]"
+	text_label_2.TextColor3 = Color3.new(1, 1, 1)
+	text_label_2.TextSize = 10
+	text_label_2.TextWrapped = true
+	text_label_2.AnchorPoint = Vector2.new(0.5, 0.5)
+	text_label_2.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_label_2.BackgroundTransparency = 1
+	text_label_2.BorderColor3 = Color3.new(0, 0, 0)
+	text_label_2.BorderSizePixel = 0
+	text_label_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+	text_label_2.Size = UDim2.new(1, 0, 1, 0)
+	text_label_2.Visible = false
+	text_label_2.Parent = _6
+
+	local tool_2 = Instance.new("ObjectValue")
+	tool_2.Name = "Tool"
+	tool_2.Parent = _6
+
+	local _2 = Instance.new("ImageButton")
+	_2.ImageTransparency = 0.3499999940395355
+	_2.BackgroundColor3 = Color3.new(0, 0, 0)
+	_2.BackgroundTransparency = 0.8999999761581421
+	_2.BorderColor3 = Color3.new(0, 0, 0)
+	_2.BorderSizePixel = 0
+	_2.Size = UDim2.new(1, 0, 1, 0)
+	_2.Visible = true
+	_2.Name = "2"
+	_2.Parent = _2hotbar
+
+	local uistroke_3 = Instance.new("UIStroke")
+	uistroke_3.Parent = _2
+    uistroke_3.Transparency = .7
+
+	local uicorner_4 = Instance.new("UICorner")
+	uicorner_4.Parent = _2
+
+	local uiaspect_ratio_constraint_3 = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint_3.Parent = _2
+
+	local text_label_3 = Instance.new("TextLabel")
+	text_label_3.Font = Enum.Font.GothamBold
+	text_label_3.Text = "[AIMLOCK]"
+	text_label_3.TextColor3 = Color3.new(1, 1, 1)
+	text_label_3.TextSize = 10
+	text_label_3.TextWrapped = true
+	text_label_3.AnchorPoint = Vector2.new(0.5, 0.5)
+	text_label_3.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_label_3.BackgroundTransparency = 1
+	text_label_3.BorderColor3 = Color3.new(0, 0, 0)
+	text_label_3.BorderSizePixel = 0
+	text_label_3.Position = UDim2.new(0.5, 0, 0.5, 0)
+	text_label_3.Size = UDim2.new(1, 0, 1, 0)
+	text_label_3.Visible = false
+	text_label_3.Parent = _2
+
+	local tool_3 = Instance.new("ObjectValue")
+	tool_3.Name = "Tool"
+	tool_3.Parent = _2
+
+	local _3 = Instance.new("ImageButton")
+	_3.ImageTransparency = 0.3499999940395355
+	_3.BackgroundColor3 = Color3.new(0, 0, 0)
+	_3.BackgroundTransparency = 0.8999999761581421
+	_3.BorderColor3 = Color3.new(0, 0, 0)
+	_3.BorderSizePixel = 0
+	_3.Size = UDim2.new(1, 0, 1, 0)
+	_3.Visible = true
+	_3.Name = "3"
+	_3.Parent = _2hotbar
+
+	local uistroke_4 = Instance.new("UIStroke")
+	uistroke_4.Parent = _3
+    uistroke_4.Transparency = .7
+
+	local uicorner_5 = Instance.new("UICorner")
+	uicorner_5.Parent = _3
+
+	local uiaspect_ratio_constraint_4 = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint_4.Parent = _3
+
+	local text_label_4 = Instance.new("TextLabel")
+	text_label_4.Font = Enum.Font.GothamBold
+	text_label_4.Text = "[AIMLOCK]"
+	text_label_4.TextColor3 = Color3.new(1, 1, 1)
+	text_label_4.TextSize = 10
+	text_label_4.TextWrapped = true
+	text_label_4.AnchorPoint = Vector2.new(0.5, 0.5)
+	text_label_4.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_label_4.BackgroundTransparency = 1
+	text_label_4.BorderColor3 = Color3.new(0, 0, 0)
+	text_label_4.BorderSizePixel = 0
+	text_label_4.Position = UDim2.new(0.5, 0, 0.5, 0)
+	text_label_4.Size = UDim2.new(1, 0, 1, 0)
+	text_label_4.Visible = false
+	text_label_4.Parent = _3
+
+	local tool_4 = Instance.new("ObjectValue")
+	tool_4.Name = "Tool"
+	tool_4.Parent = _3
+
+	local _5 = Instance.new("ImageButton")
+	_5.ImageTransparency = 0.3499999940395355
+	_5.BackgroundColor3 = Color3.new(0, 0, 0)
+	_5.BackgroundTransparency = 0.8999999761581421
+	_5.BorderColor3 = Color3.new(0, 0, 0)
+	_5.BorderSizePixel = 0
+	_5.Size = UDim2.new(1, 0, 1, 0)
+	_5.Visible = true
+	_5.Name = "5"
+	_5.Parent = _2hotbar
+
+	local uistroke_5 = Instance.new("UIStroke")
+	uistroke_5.Parent = _5
+    uistroke_5.Transparency = .7
+
+	local uicorner_6 = Instance.new("UICorner")
+	uicorner_6.Parent = _5
+
+	local uiaspect_ratio_constraint_5 = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint_5.Parent = _5
+
+	local text_label_5 = Instance.new("TextLabel")
+	text_label_5.Font = Enum.Font.GothamBold
+	text_label_5.Text = "[AIMLOCK]"
+	text_label_5.TextColor3 = Color3.new(1, 1, 1)
+	text_label_5.TextSize = 10
+	text_label_5.TextWrapped = true
+	text_label_5.AnchorPoint = Vector2.new(0.5, 0.5)
+	text_label_5.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_label_5.BackgroundTransparency = 1
+	text_label_5.BorderColor3 = Color3.new(0, 0, 0)
+	text_label_5.BorderSizePixel = 0
+	text_label_5.Position = UDim2.new(0.5, 0, 0.5, 0)
+	text_label_5.Size = UDim2.new(1, 0, 1, 0)
+	text_label_5.Visible = false
+	text_label_5.Parent = _5
+
+	local tool_5 = Instance.new("ObjectValue")
+	tool_5.Name = "Tool"
+	tool_5.Parent = _5
+
+	local _9 = Instance.new("ImageButton")
+	_9.ImageTransparency = 0.3499999940395355
+	_9.BackgroundColor3 = Color3.new(0, 0, 0)
+	_9.BackgroundTransparency = 0.8999999761581421
+	_9.BorderColor3 = Color3.new(0, 0, 0)
+	_9.BorderSizePixel = 0
+	_9.Size = UDim2.new(1, 0, 1, 0)
+	_9.Visible = true
+	_9.Name = "9"
+	_9.Parent = _2hotbar
+
+	local uistroke_6 = Instance.new("UIStroke")
+	uistroke_6.Parent = _9
+    uistroke_6.Transparency = .7
+
+	local uicorner_7 = Instance.new("UICorner")
+	uicorner_7.Parent = _9
+
+	local uiaspect_ratio_constraint_6 = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint_6.Parent = _9
+
+	local text_label_6 = Instance.new("TextLabel")
+	text_label_6.Font = Enum.Font.GothamBold
+	text_label_6.Text = "[AIMLOCK]"
+	text_label_6.TextColor3 = Color3.new(1, 1, 1)
+	text_label_6.TextSize = 10
+	text_label_6.TextWrapped = true
+	text_label_6.AnchorPoint = Vector2.new(0.5, 0.5)
+	text_label_6.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_label_6.BackgroundTransparency = 1
+	text_label_6.BorderColor3 = Color3.new(0, 0, 0)
+	text_label_6.BorderSizePixel = 0
+	text_label_6.Position = UDim2.new(0.5, 0, 0.5, 0)
+	text_label_6.Size = UDim2.new(1, 0, 1, 0)
+	text_label_6.Visible = false
+	text_label_6.Parent = _9
+
+	local tool_6 = Instance.new("ObjectValue")
+	tool_6.Name = "Tool"
+	tool_6.Parent = _9
+
+	local _4 = Instance.new("ImageButton")
+	_4.ImageTransparency = 0.3499999940395355
+	_4.BackgroundColor3 = Color3.new(0, 0, 0)
+	_4.BackgroundTransparency = 0.8999999761581421
+	_4.BorderColor3 = Color3.new(0, 0, 0)
+	_4.BorderSizePixel = 0
+	_4.Size = UDim2.new(1, 0, 1, 0)
+	_4.Visible = true
+	_4.Name = "4"
+	_4.Parent = _2hotbar
+
+	local uistroke_7 = Instance.new("UIStroke")
+	uistroke_7.Parent = _4
+    uistroke_7.Transparency = .7
+
+	local uicorner_8 = Instance.new("UICorner")
+	uicorner_8.Parent = _4
+
+	local uiaspect_ratio_constraint_7 = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint_7.Parent = _4
+
+	local text_label_7 = Instance.new("TextLabel")
+	text_label_7.Font = Enum.Font.GothamBold
+	text_label_7.Text = "[AIMLOCK]"
+	text_label_7.TextColor3 = Color3.new(1, 1, 1)
+	text_label_7.TextSize = 10
+	text_label_7.TextWrapped = true
+	text_label_7.AnchorPoint = Vector2.new(0.5, 0.5)
+	text_label_7.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_label_7.BackgroundTransparency = 1
+	text_label_7.BorderColor3 = Color3.new(0, 0, 0)
+	text_label_7.BorderSizePixel = 0
+	text_label_7.Position = UDim2.new(0.5, 0, 0.5, 0)
+	text_label_7.Size = UDim2.new(1, 0, 1, 0)
+	text_label_7.Visible = false
+	text_label_7.Parent = _4
+
+	local tool_7 = Instance.new("ObjectValue")
+	tool_7.Name = "Tool"
+	tool_7.Parent = _4
+
+	local _8 = Instance.new("ImageButton")
+	_8.ImageTransparency = 0.3499999940395355
+	_8.BackgroundColor3 = Color3.new(0, 0, 0)
+	_8.BackgroundTransparency = 0.8999999761581421
+	_8.BorderColor3 = Color3.new(0, 0, 0)
+	_8.BorderSizePixel = 0
+	_8.Size = UDim2.new(1, 0, 1, 0)
+	_8.Visible = true
+	_8.Name = "8"
+	_8.Parent = _2hotbar
+
+	local uistroke_8 = Instance.new("UIStroke")
+	uistroke_8.Parent = _8
+    uistroke_8.Transparency = .7
+
+	local uicorner_9 = Instance.new("UICorner")
+	uicorner_9.Parent = _8
+
+	local uiaspect_ratio_constraint_8 = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint_8.Parent = _8
+
+	local text_label_8 = Instance.new("TextLabel")
+	text_label_8.Font = Enum.Font.GothamBold
+	text_label_8.Text = "[AIMLOCK]"
+	text_label_8.TextColor3 = Color3.new(1, 1, 1)
+	text_label_8.TextSize = 10
+	text_label_8.TextWrapped = true
+	text_label_8.AnchorPoint = Vector2.new(0.5, 0.5)
+	text_label_8.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_label_8.BackgroundTransparency = 1
+	text_label_8.BorderColor3 = Color3.new(0, 0, 0)
+	text_label_8.BorderSizePixel = 0
+	text_label_8.Position = UDim2.new(0.5, 0, 0.5, 0)
+	text_label_8.Size = UDim2.new(1, 0, 1, 0)
+	text_label_8.Visible = false
+	text_label_8.Parent = _8
+
+	local tool_8 = Instance.new("ObjectValue")
+	tool_8.Name = "Tool"
+	tool_8.Parent = _8
+
+	local uiaspect_ratio_constraint_9 = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint_9.AspectRatio = 10
+	uiaspect_ratio_constraint_9.Parent = _2hotbar
+
+	local _7 = Instance.new("ImageButton")
+	_7.ImageTransparency = 0.3499999940395355
+	_7.BackgroundColor3 = Color3.new(0, 0, 0)
+	_7.BackgroundTransparency = 0.8999999761581421
+	_7.BorderColor3 = Color3.new(0, 0, 0)
+	_7.BorderSizePixel = 0
+	_7.Size = UDim2.new(1, 0, 1, 0)
+	_7.Visible = true
+	_7.Name = "7"
+	_7.Parent = _2hotbar
+
+	local uistroke_9 = Instance.new("UIStroke")
+	uistroke_9.Parent = _7
+    uistroke_9.Transparency = .7
+
+	local uicorner_10 = Instance.new("UICorner")
+	uicorner_10.Parent = _7
+
+	local uiaspect_ratio_constraint_10 = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint_10.Parent = _7
+
+	local text_label_9 = Instance.new("TextLabel")
+	text_label_9.Font = Enum.Font.GothamBold
+	text_label_9.Text = "[AIMLOCK]"
+	text_label_9.TextColor3 = Color3.new(1, 1, 1)
+	text_label_9.TextSize = 10
+	text_label_9.TextWrapped = true
+	text_label_9.AnchorPoint = Vector2.new(0.5, 0.5)
+	text_label_9.BackgroundColor3 = Color3.new(1, 1, 1)
+	text_label_9.BackgroundTransparency = 1
+	text_label_9.BorderColor3 = Color3.new(0, 0, 0)
+	text_label_9.BorderSizePixel = 0
+	text_label_9.Position = UDim2.new(0.5, 0, 0.5, 0)
+	text_label_9.Size = UDim2.new(1, 0, 1, 0)
+	text_label_9.Visible = false
+	text_label_9.Parent = _7
+
+	local tool_9 = Instance.new("ObjectValue")
+	tool_9.Name = "Tool"
+	tool_9.Parent = _7
+
+	local _3filler = Instance.new("Frame")
+	_3filler.BackgroundColor3 = Color3.new(1, 1, 1)
+	_3filler.BackgroundTransparency = 1
+	_3filler.BorderColor3 = Color3.new(0, 0, 0)
+	_3filler.BorderSizePixel = 0
+	_3filler.Position = UDim2.new(0.460906953, 0, 0.459852695, 0)
+	_3filler.Size = UDim2.new(0, 100, 0, 1)
+	_3filler.Visible = true
+	_3filler.Name = "3_Filler"
+	_3filler.Parent = frame
+
+	local handler = Instance.new("LocalScript")
+	handler.Name = "handler"
+	handler.Parent = frame
+
+	--//Modules
+
+	local modules = {}
+
+	--// Scripts
+
+	-- Resize
+	task.spawn(function()
+		local script = resize
+
+		local oldreq = require
+		local function require(target)
+			if modules[target] then
+				return modules[target]()
+			end
+			return oldreq(target)
+		end
+
+		
+		
+		local Hotbar = script.Parent.Parent['2_Hotbar']
+		
+		local UpdateUIGrid = function()
+			script.Parent.ScrollingFrame.InventoryGrip.CellSize = UDim2.new(0, Hotbar['1'].AbsoluteSize.X, 0, Hotbar['1'].AbsoluteSize.Y)
+		end
+		
+		
+		UpdateUIGrid()
+		script.Parent.Parent.Parent:GetPropertyChangedSignal('AbsoluteSize'):Connect(UpdateUIGrid)
+	end)
+
+	-- handler
+	task.spawn(function()
+		local script = handler
+
+		local oldreq = require
+		local function require(target)
+			if modules[target] then
+				return modules[target]()
+			end
+			return oldreq(target)
+		end
+
+		local Inventory = script.Parent['1_Inventory']
+		local Hotbar = script.Parent['2_Hotbar']
+		local Player = game.Players.LocalPlayer
+		local CustomConnections = {}
+
+		local HotbarTable = {
+			['1'] = nil,
+			['2'] = nil,
+			['3'] = nil,
+			['4'] = nil,
+			['5'] = nil,
+			['6'] = nil,
+			['7'] = nil,
+			['8'] = nil,
+			['9'] = nil
+		}
+		
+		local function isPointInBounds(point, uiElement)
+			local absSize = uiElement.AbsoluteSize
+			local absPos = uiElement.AbsolutePosition
+		
+			return point.X >= absPos.X and
+				point.X <= absPos.X + absSize.X and
+				point.Y >= absPos.Y and
+				point.Y <= absPos.Y + absSize.Y
+		end
+		
+		ToggleInventory = function()
+			print(HotbarTable)
+            game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false)
+
+			if Inventory.Visible == true then
+				Inventory.Visible = false
+				
+				for i,v in pairs(Hotbar:GetChildren()) do
+					if not HotbarTable[v.Name] and v:IsA('ImageButton') then
+						v.Visible = false
+					end
+				end
+			else
+				Inventory.Visible = true
+				
+				for i,v in pairs(Hotbar:GetChildren()) do
+					if v:IsA('ImageButton') then
+						v.Visible = true
+					end
+				end
+			end
+		end
+		
+		game:GetService("UserInputService").InputBegan:Connect(function(Key, b)
+			if Key.KeyCode == Enum.KeyCode.Backquote and not b then
+				ToggleInventory()
+			end
+		end)
+		
+		local function AddToInventory(Tool, Slot)
+			
+			local Loaded = Instance.new('Folder', Tool)
+			Loaded.Name = 'Loaded'
+			
+			local NewButton
+			if Slot then
+				NewButton = Hotbar[tostring(Slot)]
+				HotbarTable[tostring(Slot)] = Tool
+			else
+				NewButton = Hotbar['1']:Clone()
+				NewButton.Parent = Inventory.ScrollingFrame
+			end
+			
+			if Tool.TextureId == '' then
+				NewButton.TextLabel.Visible = true
+				NewButton.TextLabel.Text = Tool.Name
+				NewButton.Image = ''
+			else
+				NewButton.TextLabel.Visible = false
+				NewButton.Image = Tool.TextureId
+			end
+			
+			NewButton.Visible = true
+			NewButton.Tool.Value = Tool
+		end
+		
+		
+		local function ClearTable()
+            print('CLEARING')
+            HotbarTable = {
+                ['1'] = nil,
+                ['2'] = nil,
+                ['3'] = nil,
+                ['4'] = nil,
+                ['5'] = nil,
+                ['6'] = nil,
+                ['7'] = nil,
+                ['8'] = nil,
+                ['9'] = nil
+            }
+
+			for i,v in pairs(Hotbar:GetChildren()) do
+				if v:IsA('ImageButton') then
+					v.TextLabel.Visible = false
+                    v.Image = ''
+                    v.UIStroke.Transparency = .7
+                    v.Visible = false
+                    v.Tool.Value = nil
+				end
+			end
+			
+			for i,v in pairs(Inventory.ScrollingFrame:GetChildren()) do
+				if v:IsA('ImageButton') then
+					v:Destroy()
+				end
+			end
+		end
+		
+		
+		local function LoadTable()
+		
+			local AllTools = {}
+			for i,v in pairs(Player.Backpack:GetChildren()) do
+				if v:IsA('Tool') then
+					table.insert(AllTools, v)
+				end
+			end
+			for i,v in pairs(Player.Character:GetChildren()) do
+				if v:IsA('Tool') then
+					table.insert(AllTools, v)
+				end
+			end
+		
+			game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false)
+            ToggleInventoryButton.MouseButton1Click:Connect(ToggleInventory)
+
+			for i,v in pairs(AllTools) do
+				if i <= 9 then
+					if not HotbarTable[tostring(i)] then
+						HotbarTable[tostring(i)] = v
+						AddToInventory(v, i)
+					end
+				else
+					AddToInventory(v)
+				end
+			end
+			
+			print(HotbarTable)
+			for i,v in pairs(Hotbar:GetChildren()) do
+				if v:IsA('ImageButton') then
+					if HotbarTable[v.Name] == nil then
+						v.Visible = false
+					else
+						v.Visible = true
+					end
+				end
+			end
+
+            table.insert(CustomConnections, Player.Character.ChildAdded:Connect(function(Child)
+                repeat task.wait() until Child
+            
+                if Child:FindFirstChild('Loaded') or not Child:IsA('Tool') then
+                    for i,v in pairs(Inventory.Parent:GetDescendants()) do
+                        if v:IsA('ImageButton') then
+                            if v.Tool.Value == Child then
+            
+                                v.UIStroke.Color = Color3.fromRGB(255,255,255)
+                                v.UIStroke.Transparency = 0
+                                v.UIStroke.Thickness = 2
+            
+            
+                                return;
+                            end
+                        end
+                    end
+                    return;
+                end
+            
+                for i,v in pairs(Hotbar:GetChildren()) do
+                    if (Child:IsA('Tool') and v:IsA('ImageButton')) and (v.Tool.Value == nil or v.Tool.Value == '') then
+            
+                        HotbarTable[v.Name] = Child
+                        AddToInventory(Child, v.Name)
+            
+                        return;
+                    end
+                end
+            
+                AddToInventory(Child)
+                
+                for i,v in pairs(Inventory.Parent:GetDescendants()) do
+                    if v:IsA('ImageButton') then
+                        if v.Tool.Value == Child then
+            
+                            v.UIStroke.Color = Color3.fromRGB(255,255,255)
+                            v.UIStroke.Transparency = 0
+                            v.UIStroke.Thickness = 2
+                            
+            
+                            return;
+                        end
+                    end
+                end
+            end))
+            
+            table.insert(CustomConnections, Player.Character.ChildRemoved:Connect(function(Child)
+                for i,v in pairs(Inventory.Parent:GetDescendants()) do
+                    if v:IsA('ImageButton') then
+                        if v.Tool.Value == Child then
+                            if v.Tool.Value.Parent == nil then
+                                print('destroyed')
+                                if v.Parent == Inventory.ScrollingFrame then
+                                    v:Destroy()
+                                else
+                                    v.UIStroke.Color = Color3.fromRGB(0,0,0)
+                                    v.UIStroke.Transparency = .7
+                                    v.UIStroke.Thickness = 1
+                                end
+                            else
+                                v.UIStroke.Color = Color3.fromRGB(0,0,0)
+                                v.UIStroke.Transparency = .7
+                                v.UIStroke.Thickness = 1
+                            end
+                            
+                            return;
+                        end
+                   end
+               end
+            end))
+		end
+		
+		
+		local UserInputService = game:GetService("UserInputService")
+		local hotbarItem = Hotbar['1']
+		local clonedItem = nil
+		local lastSelected = nil
+		
+		local function onInputBegan(input)
+			if Inventory.Visible == false then
+				return;
+			end
+			
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				
+				local AllItems = {}
+				
+				for i,v in pairs(Inventory.ScrollingFrame:GetChildren()) do
+					if v:IsA('ImageButton') then
+						table.insert(AllItems, v)
+					end
+				end
+				for i,v in pairs(Hotbar:GetChildren()) do
+					if v:IsA('ImageButton') and (v.TextLabel.Visible == true or v.Image ~= '') then
+						table.insert(AllItems, v)
+					end
+				end
+				
+				
+				for i,uiItem in pairs(AllItems) do
+					if isPointInBounds(input.Position, uiItem) then
+						lastSelected = uiItem
+						clonedItem = uiItem:Clone()
+						clonedItem.Size = UDim2.new(0, Hotbar['1'].AbsoluteSize.X, 0, Hotbar['1'].AbsoluteSize.Y)
+						clonedItem.Position = UDim2.new(0, input.Position.X, 0, input.Position.Y)
+						clonedItem.Parent = Inventory.Parent.Parent
+						break;
+					end
+				end
+			end
+		end
+		
+		local function onInputChanged(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				if clonedItem then
+					clonedItem.Position = UDim2.new(0, input.Position.X, 0, input.Position.Y)
+				end
+			end
+		
+		end
+		
+		local function onInputEnded(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+				if clonedItem then
+					clonedItem:Destroy()
+					clonedItem = nil
+		
+					local AllowEnded = {Inventory}
+					for i,v in pairs(Hotbar:GetChildren()) do
+						if v:IsA('ImageButton') then
+							table.insert(AllowEnded, v)
+						end
+					end
+		
+		
+					for i,v in pairs(AllowEnded) do
+						if isPointInBounds(input.Position, v) then
+							if v == Inventory and lastSelected.Parent ~= Inventory.ScrollingFrame then
+								local newButton = lastSelected:Clone()
+								lastSelected.Image = ''
+								lastSelected.TextLabel.Visible = false
+								lastSelected.Tool.Value = nil
+								lastSelected.UIStroke.Color = Color3.fromRGB(0,0,0)
+								lastSelected.UIStroke.Transparency = .7
+								lastSelected.UIStroke.Thickness = 1
+								
+								newButton.Parent = Inventory.ScrollingFrame
+								HotbarTable[lastSelected.Name] = nil
+							else
+								if v.Name == '1_Inventory' or lastSelected.Tool.Value == v.Tool.Value then
+									return;
+								end
+								
+								local LastSelectedSave = {
+									['Image'] = lastSelected.Image,
+									['TextLabelVisible'] = lastSelected.TextLabel.Visible,
+									['Text'] = lastSelected.TextLabel.Text,
+									['Tool'] = lastSelected.Tool.Value
+								}
+								local CurrentSave = {
+									['Image'] = v.Image,
+									['TextLabelVisible'] = v.TextLabel.Visible,
+									['Text'] = v.TextLabel.Text,
+									['Tool'] = v.Tool.Value
+								}
+								
+		
+								
+								if v.Tool.Value ~= nil and v.Tool.Value ~= '' then
+									--\\ Overwrite
+									
+									if lastSelected.Parent == Inventory.ScrollingFrame or 1 == 1 then
+										
+										
+		
+										if v.TextLabel.Visible == true then
+											lastSelected.Image = ''
+											lastSelected.TextLabel.Visible = true
+											lastSelected.TextLabel.Text = v.TextLabel.Text
+										else
+											lastSelected.Image = v.Image
+											lastSelected.TextLabel.Visible = false
+											lastSelected.TextLabel.Text = ''
+										end
+		
+		
+										lastSelected.Tool.Value = CurrentSave.Tool
+										v.Tool.Value = LastSelectedSave.Tool
+										
+										HotbarTable[v.Name] = LastSelectedSave.Tool
+		
+										if lastSelected.Parent == Hotbar then
+											HotbarTable[lastSelected.Name] = CurrentSave.Tool
+										end
+									else
+		
+										
+									end
+								else
+		
+			
+									v.Tool.Value = lastSelected.Tool.Value
+		
+									lastSelected.Image = ''
+									lastSelected.TextLabel.Visible = false
+									lastSelected.Tool.Value = nil
+									HotbarTable[lastSelected.Name] = nil
+									HotbarTable[v.Name] = v.Tool.Value
+		
+		
+									if lastSelected.Parent ~= Hotbar then
+										lastSelected:Destroy()
+									end
+								end
+								
+								--[[ UPDATE NEW HOTBAR ICON ]]
+								if LastSelectedSave.TextLabelVisible == true then
+									v.Image = ''
+									v.TextLabel.Visible = true
+									v.TextLabel.Text = LastSelectedSave['Text']
+								else
+									v.Image = LastSelectedSave.Image
+									v.TextLabel.Visible = false
+									v.TextLabel.Text = ''
+								end
+		
+		
+								HotbarTable[v.Name] = LastSelectedSave.Tool
+								
+							end
+							break;
+						end
+					end
+		
+				end
+			end
+		end
+		
+		UserInputService.InputBegan:Connect(onInputBegan)
+		UserInputService.InputChanged:Connect(onInputChanged)
+		UserInputService.InputEnded:Connect(onInputEnded)
+		
+		
+		Player.Backpack.ChildAdded:Connect(function(Child)
+			repeat task.wait() until Child
+			
+			if Child:FindFirstChild('Loaded') then
+				return;
+			end
+			
+			for i,v in pairs(Hotbar:GetChildren()) do
+				if (Child:IsA('Tool') and v:IsA('ImageButton')) and (v.Tool.Value == nil or v.Tool.Value == '') then
+					
+					HotbarTable[v.Name] = Child
+					AddToInventory(Child, v.Name)
+					
+					return;
+				end
+			end
+			
+			AddToInventory(Child)
+		end)
+		
+
+
+		game:GetService("CoreGui").RobloxGui.Backpack:GetPropertyChangedSignal('Visible'):Connect(function()
+			if game:GetService("CoreGui").RobloxGui.Backpack.Visible == true then
+                game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false)
+				print("DISABLED")
+			end
+		end)
+		
+		Player.CharacterAdded:Connect(function()
+            pcall(function()
+                for i,v in pairs(CustomConnections) do
+                    v:Disconnect()
+                end
+            end)
+
+			ClearTable()
+			task.wait(3)
+			LoadTable()
+		end)
+		LoadTable()
+		
+		
+		for i,v in pairs(Hotbar:GetChildren()) do
+			if v:IsA('ImageButton') then
+				v.Activated:Connect(function()
+					if v.Tool.Value == nil or v.Tool.Value == '' then
+						return;
+					end
+		
+					if Player.Character:FindFirstChildOfClass('Tool') and v.Tool.Value == Player.Character:FindFirstChildOfClass('Tool') then
+						for i,v in pairs(Player.Character:GetChildren()) do
+							if v:IsA('Tool') then
+								v.Parent = Player.Backpack
+							end		
+						end
+		
+						return;
+					end
+		
+					for i,v in pairs(Player.Character:GetChildren()) do
+						if v:IsA('Tool') then
+							v.Parent = Player.Backpack
+						end		
+					end
+					
+					v.Tool.Value.Parent = Player.Character
+				end)
+			end
+		end
+		
+		local Keys = {'1','2','3','4','5','6','7','8','9'}
+		game:GetService('UserInputService').InputBegan:Connect(function(Key, b)
+			if table.find(Keys, game:GetService('UserInputService'):GetStringForKeyCode(Key.KeyCode)) and not b then
+				local v = Hotbar:FindFirstChild(game:GetService('UserInputService'):GetStringForKeyCode(Key.KeyCode))
+				if v.Tool.Value == nil or v.Tool.Value == '' then
+					return;
+				end
+		
+				if Player.Character:FindFirstChildOfClass('Tool') and v.Tool.Value == Player.Character:FindFirstChildOfClass('Tool') then
+					for i,v in pairs(Player.Character:GetChildren()) do
+						if v:IsA('Tool') then
+							v.Parent = Player.Backpack
+						end		
+					end
+		
+					return;
+				end
+		
+				for i,v in pairs(Player.Character:GetChildren()) do
+					if v:IsA('Tool') then
+						v.Parent = Player.Backpack
+					end		
+				end
+		
+				v.Tool.Value.Parent = Player.Character
+			end
+		end)
+	end)
+end
+
+
 Setup()
+LoadCustomUI()

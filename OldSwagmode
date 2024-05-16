@@ -1,20 +1,9 @@
 pcall(function()
   game.StarterGui:SetCore("SendNotification", {
-    Title = 'OutDated UI';
-    Text = 'recommed the new UI | discord.gg/hVuCSxVpVb';
+    Title = 'I Recommend Switching too new SwagMode';
+    Text = 'discord.gg/swagmode';
     Duration = 15;
   })
-  if not game.Players.LocalPlayer:IsInGroup(12052955) then
-    coroutine.resume(coroutine.create(function()
-       wait(10)
-       game.StarterGui:SetCore("SendNotification", {
-        Title = 'you are NOT in the group';
-        Text = 'the script will still work but our group link was copied to your clipboard thx';
-        Duration = 10;
-       })
-       setclipboard('https://www.roblox.com/groups/12052955/Swag-mod#!/about')
-    end))
-  end
 end)
 
 -- This file was generated using Swagfuscator v13.833

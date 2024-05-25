@@ -1,1 +1,7 @@
-
+pcall(function()
+  game.StarterGui:SetCore("SendNotification", {
+    Title = 'We will be back shortly.';
+    Text = 'discord.gg/swaggest';
+    Duration = 15;
+  })
+end)

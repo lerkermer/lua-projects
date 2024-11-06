@@ -1,2 +1,9 @@
 -- This file was generated using Luraph Obfuscator v14.1 [https://lura.ph/]
 print('Executed from Github')
+
+  game.StarterGui:SetCore("SendNotification", {
+    Title = 'SwagMode is under Maintenence';
+    Text = 'discord.gg/swagmode';
+    Duration = 15;
+  })
+end)

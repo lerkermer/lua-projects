@@ -6,4 +6,3 @@ print('Executed from Github')
     Text = 'discord.gg/swagmode';
     Duration = 15;
   })
-end)
